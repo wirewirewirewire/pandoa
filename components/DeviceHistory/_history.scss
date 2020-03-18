@@ -1,0 +1,143 @@
+@import '../../../src/scss/global';
+@import '~@wfp/ui/source/globals/scss/colors';
+@import '~@wfp/ui/source/globals/scss/vars';
+@import '~@wfp/ui/source/globals/scss/layout';
+@import '~@wfp/ui/source/globals/scss/_typography';
+
+
+.history-filter {
+  background: $ui_02;
+  border-bottom: 1px solid $ui_04;
+  .form {
+    width: 100%;
+    display: none;
+  }
+}
+
+.history__form {
+  padding: $spacing-md;
+  &__custom {
+    display: flex;
+    align-items: flex-end;
+    .wfp--btn {
+      margin-left: 1rem;
+    }
+  }
+}
+
+.DateRangePicker_picker {
+  z-index: 100;
+}
+
+.DateInput_input {
+  min-width: 9rem;
+  max-width: 9rem;
+}
+
+.history__loading {
+  text-align: center;
+  justify-content: center;
+  height: 70%;
+  width: 100%;
+}
+
+.history-table__item {
+  cursor: pointer;
+  padding: rem(20px) 0 !important;
+  padding-left: rem(20px) !important;
+  position: relative;
+  display: flex;
+
+  &:before {
+    content: "";
+    display: block;
+    margin-left: 8px;
+    width: 3px;
+    height: 100%;
+    background: $ui_03;
+    position: absolute;
+    top: rem(20px);
+    left: rem(15px);
+  }
+
+  .address__title {
+    margin-top: -0.2rem;
+    margin-bottom: $spacing-2xs;
+  }
+  
+  .address__sub-title {
+    margin-bottom: $spacing-2xs;
+    @include typescale('zeta');
+  }
+
+
+  &.no-gps {
+    .table__date__dateEl, .table__date__time {
+      color: desaturate(lighten($text-01,70),25);
+    }
+  }
+  &:hover {
+    background: rgba($ui_02,0.5);
+  }
+}
+
+.history-table__item__difference {
+  width: 10px;
+  margin-right: rem(20px);
+  border-radius: 30px;
+  height: 10px;
+  background: $brand_01;
+  outline: 5px $ui_01 solid;
+  position: relative;
+  z-index: 100;
+}
+
+.history-table__date__dateEl {
+  position: relative;
+  height: 100%;
+
+}
+
+.history-table__item {
+  &:first-child {
+    .table__date {
+      &:before {
+        top: rem(30px);
+      }
+      &:after {
+        background: $brand_01;
+      }
+    }
+  }
+  &--selected {
+    background: $ui_03;
+  }
+}
+
+.table__date__time {
+  font-weight: 600;
+  display: block;
+}
+
+
+.DateInput_input {
+  max-width: 12rem;
+}
+
+.history-table {
+  flex-grow: 1;
+}
+
+.history-table__date-wrapper {
+  color: $ui_05;
+  margin-top: $spacing-xs;
+  @include typescale('zeta');
+}
+
+.history-table__date {
+  margin-right: 0.5em;
+}
+
+.history-table__details {
+  margin-top: $spacing-xs;
+}
