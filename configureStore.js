@@ -8,8 +8,8 @@ import helloSaga from "./sagas";
 
 const persistConfig = {
   key: "root",
-  storage: ExpoFileSystemStorage,
-  timeout: 1
+  storage: ExpoFileSystemStorage
+  // timeout: 1
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

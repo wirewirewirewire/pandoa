@@ -19,27 +19,20 @@ import { getAllPositions } from "../selectors";
 import ReportForm from "../components/ReportForm";
 
 function ReportDetailScreen({ navigation, reportCaseTrigger }) {
-  const reportButton = e => {
-    console.log("Button clicked");
-    reportCaseTrigger(e);
-  };
   return (
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
     >
       <ReportForm />
-      <Text>
-        On this page you can report if you have got an infection. Please enter
-        your details below
-      </Text>
     </ScrollView>
   );
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fafafa"
+    //backgroundColor: "#fafafa"
+    backgroundColor: "#fdfdfd"
   },
   contentContainer: {
     paddingTop: 15

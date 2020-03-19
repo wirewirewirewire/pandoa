@@ -25,6 +25,9 @@ import { addTodo } from "./actions";
 import { StyleProvider } from "native-base";
 import getTheme from "./native-base-theme/components";
 import material from "./native-base-theme/variables/commonColor";
+//import getTheme from "native-base/dist/src/theme/components";
+//import material from "native-base/dist/src/theme/variables/material";
+
 const LOCATION_TRACKING = "location-tracking";
 
 export default function App(props) {

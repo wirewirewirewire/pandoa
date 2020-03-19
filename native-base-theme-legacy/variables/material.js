@@ -129,6 +129,7 @@ export default {
   brandDanger: '#d9534f',
   brandWarning: '#f0ad4e',
   brandDark: '#000',
+  brandMiddle: '#8c9ba5',
   brandLight: '#f4f4f4',
 
   // Container

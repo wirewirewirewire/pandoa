@@ -8,7 +8,7 @@ const startLocationTracking = async () => {
     distanceInterval: 90
   });
   const hasStarted = await Location.hasStartedLocationUpdatesAsync(
-    LOCATION_TRACKINGs
+    LOCATION_TRACKING
   );
   console.log("tracking started?bb", hasStarted);
 };
