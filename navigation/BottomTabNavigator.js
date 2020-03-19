@@ -2,7 +2,7 @@ import * as React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
-import LinksScreen from "../screens/LinksScreen";
+import ReportScreen from "../screens/ReportScreen";
 import MapScreen from "../screens/MapScreen";
 
 const BottomTab = createBottomTabNavigator();
@@ -42,9 +42,9 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Report"
-        component={LinksScreen}
+        component={ReportScreen}
         options={{
-          title: "Report",
+          title: "Report case",
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="md-umbrella" />
           )

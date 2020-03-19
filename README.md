@@ -8,3 +8,15 @@ The app informs you, if you had contact with an infected patient.
 
 Dafür wird im Hintergrund die Bewegung des Nutzers aufgezeichnet und mit den Bewegungsdaten von Patienten verglichen.
 Der Abgleich funktioniert, ohne dass dein Bewegungsprofil geteilt werden muss, nur im Falle einer Infektion hast du die Möglichkeit dieses anderen Nutzern bereitzustellen.
+
+### How to use
+
+```
+npm install
+npm start
+```
+
+### Credits
+
+Illustrations
+https://www.vecteezy.com/vector-art/149356-bacterias-and-mold-vector-drawings-doodle

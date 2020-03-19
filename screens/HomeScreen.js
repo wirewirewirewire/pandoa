@@ -16,7 +16,7 @@ import { clearAll } from "../actions";
 
 import { createStackNavigator } from "@react-navigation/stack";
 import WarningsScreen from "./WarningsScreen";
-import WarningDetailScreen from "./WarningDetailScreen";
+import ReportScreen from "./ReportScreen";
 
 const Stack = createStackNavigator();
 
@@ -38,7 +38,7 @@ function HomeScreen(props) {
   return (
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen name="Home" component={WarningsScreen} />
-      <Stack.Screen name="Details" component={WarningDetailScreen} />
+      <Stack.Screen name="Details" component={ReportScreen} />
     </Stack.Navigator>
   );
 }
