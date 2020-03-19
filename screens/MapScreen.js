@@ -98,8 +98,8 @@ class MapScreen extends Component {
             longitudeDelta: 0.0421
           }}
         >
-          <TrackHistory updateMap={this.updateMap} />
           <MapHistory updateMap={this.updateMap} />
+          <TrackHistory updateMap={this.updateMap} />
         </PaddedMapView>
       </View>
     );

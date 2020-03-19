@@ -29,34 +29,15 @@ const MapHistory = ({ positions }) => {
       latitude: point.lat
     };
     return (
-      <Marker key={index} coordinate={coordinates} title="Lorem ipsum">
+      <Marker key={index} coordinate={coordinates}>
         <View style={styles.historyCircle}></View>
-        <MapView.Callout
-          style={{
-            minWidth: 150,
-            backgroundColor: "white",
-            padding: 10,
-            shadowColor: "#000",
-            shadowOffset: {
-              width: 0,
-              height: 2
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 3.84,
-
-            elevation: 5
-          }}
-          tooltip={true}
-          //onPress={() => this.onCalloutPress(idKey)}
-        >
-          <Text>{point.date}</Text>
-        </MapView.Callout>
       </Marker>
     );
   });
 
   return (
     <React.Fragment>
+      {points}
       {/*<Heatmap
         points={lines}
         opacity={1}
@@ -70,12 +51,12 @@ const MapHistory = ({ positions }) => {
         heatmapMode={"POINTS_DENSITY"}
         key="aaaa"
       />*/}
-      <Polyline
+      {/*<Polyline
         coordinates={lines}
         geodesic={true}
         strokeColor={Colors.warningText} // fallback for when `strokeColors` is not supported by the map-provider
         strokeWidth={5}
-      />
+      />*/}
     </React.Fragment>
   );
 };
@@ -88,11 +69,10 @@ const mapStateToProps = state => {
 
 const styles = StyleSheet.create({
   historyCircle: {
-    width: 5,
-    height: 5,
-    borderColor: "white",
-    borderWidth: 1,
-    borderRadius: 20 / 2,
+    width: 50,
+    height: 50,
+    borderRadius: 50 / 2,
+    opacity: 0.03,
     backgroundColor: Colors.tintColor
   }
 });

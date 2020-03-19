@@ -14,12 +14,7 @@ export default function todos(state = initialState, action) {
     case API_CALL_INFECTIONS_SUCCESS:
       return [...action.data];
     case API_CALL_INFECTIONS_FAILURE:
-      return {
-        ...state,
-        fetching: false,
-        error: action.error,
-        errorResponse: action.error.response
-      };
+      return [];
     default:
       return state;
   }

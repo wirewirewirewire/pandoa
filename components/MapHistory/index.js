@@ -10,10 +10,11 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback
 } from "react-native";
-import { getAllPositions } from "../../selectors";
+import { getAllPositions, getAllTracks } from "../../selectors";
 import Colors from "../../constants/Colors";
+import latLngDistance from "../../helpers/latLngDistance";
 
-const MapHistory = ({ positions }) => {
+const MapHistory = ({ positions, tracks }) => {
   const lines = positions.map(point => {
     //if (point.gps_lng && point.gps_lng) {
     return {
@@ -23,15 +24,67 @@ const MapHistory = ({ positions }) => {
   });
   //updateMap(pointIDs);s
 
-  const points = positions.map((point, index) => {
+  const connectedPoints = positions.map((position, i) => {
+    var combination = [];
+    const matches = tracks.find((track, i) => {
+      //console.log(track.lat, position.lat);
+      const distance = latLngDistance(
+        track.lat,
+        track.lng,
+        position.lat,
+        position.lng,
+        "M"
+      );
+      if (distance <= 100) {
+        //combination.push(track);
+        return { track, distance };
+      } else {
+        return null;
+      }
+    });
+
+    return { position, matches };
+  });
+
+  console.log("connectedPoints", connectedPoints);
+
+  const points = connectedPoints.map((point, index) => {
+    if (!point) return null;
     const coordinates = {
-      longitude: point.lng,
-      latitude: point.lat
+      longitude: point.position.lng,
+      latitude: point.position.lat
     };
+
     return (
-      <Marker key={index} coordinate={coordinates} title="Lorem ipsum">
-        <View style={styles.historyCircle}></View>
-        <MapView.Callout
+      <Marker
+        key={index}
+        coordinate={coordinates}
+        title="Lorem ipsum"
+        description="Haloo"
+      >
+        {point.matches ? (
+          <View
+            style={[
+              styles.matchCircle,
+              {
+                backgroundColor:
+                  point.matches && point.matches.length > 1 ? "red" : "blue"
+              }
+            ]}
+          ></View>
+        ) : (
+          <View style={styles.historyCircle} />
+        )}
+        {/*<View
+          style={[
+            styles.matchCircle,
+            {
+              backgroundColor:
+                point.matches && point.matches.length > 1 ? "red" : "blue"
+            }
+          ]}
+        ></View>*/}
+        {/*<MapView.Callout
           style={{
             minWidth: 150,
             backgroundColor: "white",
@@ -49,8 +102,8 @@ const MapHistory = ({ positions }) => {
           tooltip={true}
           //onPress={() => this.onCalloutPress(idKey)}
         >
-          <Text>{point.date}</Text>
-        </MapView.Callout>
+          <Text>Whooo{point.matches && point.matches.length}</Text>
+        </MapView.Callout>*/}
       </Marker>
     );
   });
@@ -70,7 +123,8 @@ const MapHistory = ({ positions }) => {
 
 const mapStateToProps = state => {
   return {
-    positions: getAllPositions(state)
+    positions: getAllPositions(state),
+    tracks: getAllTracks(state)
   };
 };
 
@@ -78,6 +132,14 @@ const styles = StyleSheet.create({
   historyCircle: {
     width: 5,
     height: 5,
+    borderColor: "white",
+    borderWidth: 1,
+    borderRadius: 20 / 2,
+    backgroundColor: Colors.tintColor
+  },
+  matchCircle: {
+    width: 25,
+    height: 25,
     borderColor: "white",
     borderWidth: 1,
     borderRadius: 20 / 2,

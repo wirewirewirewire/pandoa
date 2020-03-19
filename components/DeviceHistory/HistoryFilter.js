@@ -66,8 +66,6 @@ class Settings extends React.Component {
     var from;
     var to;
 
-    console.log(lastDates);
-
     if (lastDates === "custom") {
       from =
         dateRange && dateRange.startDate
@@ -83,8 +81,6 @@ class Settings extends React.Component {
       from = filterList[lastDates].from;
       to = filterList[lastDates].to;
     }
-
-    console.log("from", from, to);
 
     onRequestStores({
       id: currentDevice[0],
