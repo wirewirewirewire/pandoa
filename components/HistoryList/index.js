@@ -10,7 +10,7 @@ function HistoryList({ positions }) {
       {positions.map((e, i) => (
         <ListItem key={i}>
           <Text>{e.lat}</Text>
-          <Text>{e.long}</Text>
+          <Text>{e.lng}</Text>
         </ListItem>
       ))}
     </List>

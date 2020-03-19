@@ -16,6 +16,8 @@ import { connect } from "react-redux";
 import { clearAll, reportCase } from "../actions";
 import { getAllPositions } from "../selectors";
 
+import ReportForm from "../components/ReportForm";
+
 function ReportDetailScreen({ navigation, reportCaseTrigger }) {
   const reportButton = e => {
     console.log("Button clicked");
@@ -26,21 +28,11 @@ function ReportDetailScreen({ navigation, reportCaseTrigger }) {
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
     >
+      <ReportForm />
       <Text>
         On this page you can report if you have got an infection. Please enter
         your details below
       </Text>
-      <Form>
-        <Item>
-          <Input placeholder="Username" />
-        </Item>
-        <Item last>
-          <Input placeholder="Password" />
-        </Item>
-        <Button primary onPress={reportButton}>
-          <Text>Submit data</Text>
-        </Button>
-      </Form>
     </ScrollView>
   );
 }

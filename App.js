@@ -38,7 +38,6 @@ export default function App(props) {
     async function loadResourcesAndDataAsync() {
       try {
         SplashScreen.preventAutoHide();
-
         // Load our initial navigation state
         setInitialNavigationState(await getInitialState());
 
@@ -116,14 +115,14 @@ TaskManager.defineTask(LOCATION_TRACKING, async ({ data, error }) => {
   if (data) {
     const { locations } = data;
     let lat = locations[0].coords.latitude;
-    let long = locations[0].coords.longitude;
+    let lng = locations[0].coords.longitude;
 
     console.log(
-      `Location: ${new Date(Date.now()).toISOString()}: ${lat},${long}`
+      `Location: ${new Date(Date.now()).toISOString()}: ${lat},${lng}`
     );
 
     Store().store.dispatch(
-      addTodo({ date: new Date(Date.now()).toISOString(), lat, long })
+      addTodo({ time: new Date(Date.now()).toISOString(), lat, lng })
     );
   }
 });

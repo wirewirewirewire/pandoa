@@ -15,12 +15,18 @@ import { connect } from "react-redux";
 
 import { MonoText } from "../components/StyledText";
 import startLocationTracking from "../helpers/startLocationTracking";
-import { clearAll } from "../actions";
+import { clearAll, downloadInfections } from "../actions";
 import WarningList from "../components/WarningList";
 import WarningGenerator from "../components/WarningGenerator";
+import { countTracks } from "../selectors";
 
 function HomeScreen(props) {
-  const { clearAllTrigger, navigation } = props;
+  const {
+    clearAllTrigger,
+    downloadInfectionsTrigger,
+    positionsCount,
+    navigation
+  } = props;
 
   console.log("props", clearAllTrigger);
   return (
@@ -44,7 +50,10 @@ function HomeScreen(props) {
 
         <View style={styles.getStartedContainer}>
           <Button title="Start tracking" onPress={startLocationTracking} />
-
+          <Button
+            title={`Get data from server${positionsCount}`}
+            onPress={e => downloadInfectionsTrigger()}
+          />
           <Button title="reset" onPress={e => clearAllTrigger()} />
         </View>
       </ScrollView>
@@ -181,11 +190,14 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    positionsCount: countTracks(state)
+  };
 };
 
 const mapDispatchToProps = dispatch => ({
-  clearAllTrigger: id => dispatch(clearAll(id))
+  clearAllTrigger: id => dispatch(clearAll(id)),
+  downloadInfectionsTrigger: id => dispatch(downloadInfections(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

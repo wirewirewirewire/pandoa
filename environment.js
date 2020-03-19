@@ -1,5 +1,5 @@
-const localhost = "https://dev.api.schoolconnect.wfp.org/api/v2";
-const production = "https://dev.api.schoolconnect.wfp.org/api/v2";
+const localhost = "https://pandoa.wirewire.de/api/v1/";
+const production = "https://pandoa.wirewire.de/api/v1/";
 
 const ENV = {
   dev: {

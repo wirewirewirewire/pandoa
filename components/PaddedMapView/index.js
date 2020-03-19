@@ -24,7 +24,7 @@ class PaddedMapView extends Component {
 
     const points = this.props.positions.map((point, index) => {
       return {
-        longitude: point.long,
+        longitude: point.lng,
         latitude: point.lat
       };
     });

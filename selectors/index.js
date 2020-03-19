@@ -26,4 +26,6 @@ export const getAllPositions = state => state.positions;
 
 export const getAllWarnings = state => state.warnings;
 
-export const getAllTracks = state => state.tracks;
+export const getAllTracks = state =>
+  Array.isArray(state.infections) ? state.infections : [];
+export const countTracks = state => state.infections.length;

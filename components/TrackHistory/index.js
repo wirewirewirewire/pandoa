@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import MapView, { Marker, Polyline } from "react-native-maps";
+import MapView, { Marker, Heatmap, Polyline } from "react-native-maps";
 import {
   StyleSheet,
   View,
@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback
 } from "react-native";
-import { getAllPositions } from "../../selectors";
+import { getAllPositions, getAllTracks } from "../../selectors";
 import Colors from "../../constants/Colors";
 
 const MapHistory = ({ positions }) => {
@@ -57,12 +57,24 @@ const MapHistory = ({ positions }) => {
 
   return (
     <React.Fragment>
-      {points}
+      {/*<Heatmap
+        points={lines}
+        opacity={1}
+        radius={Platform.OS === "ios" ? 50 : 15}
+        maxIntensity={100}
+        gradient={{
+          colors: [Colors.warningText, Colors.warningText],
+          startPoints: [0, 1],
+          colorMapSize: 500
+        }}
+        heatmapMode={"POINTS_DENSITY"}
+        key="aaaa"
+      />*/}
       <Polyline
         coordinates={lines}
         geodesic={true}
-        strokeColor={Colors.tintColor} // fallback for when `strokeColors` is not supported by the map-provider
-        strokeWidth={2}
+        strokeColor={Colors.warningText} // fallback for when `strokeColors` is not supported by the map-provider
+        strokeWidth={5}
       />
     </React.Fragment>
   );
@@ -70,7 +82,7 @@ const MapHistory = ({ positions }) => {
 
 const mapStateToProps = state => {
   return {
-    positions: getAllPositions(state)
+    positions: getAllTracks(state)
   };
 };
 

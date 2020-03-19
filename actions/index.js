@@ -16,6 +16,11 @@ export const reportCase = data => ({
   data
 });*/
 
-export const reportCase = () => ({
-  type: types.API_CALL_REPORT_REQUEST
+export const downloadInfections = () => ({
+  type: types.API_CALL_INFECTIONS_REQUEST
+});
+
+export const reportCase = data => ({
+  type: types.API_CALL_REPORT_REQUEST,
+  data
 });

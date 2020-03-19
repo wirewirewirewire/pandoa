@@ -8,6 +8,7 @@ import MapView from "react-native-maps";
 import MapHistory from "../components/MapHistory";
 import BottomSheetDetails from "../components/BottomSheetDetails";
 import PaddedMapView from "../components/PaddedMapView";
+import TrackHistory from "../components/TrackHistory";
 
 const Screen = {
   width: Dimensions.get("window").width,
@@ -97,6 +98,7 @@ class MapScreen extends Component {
             longitudeDelta: 0.0421
           }}
         >
+          <TrackHistory updateMap={this.updateMap} />
           <MapHistory updateMap={this.updateMap} />
         </PaddedMapView>
       </View>
