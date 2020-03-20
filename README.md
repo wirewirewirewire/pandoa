@@ -8,12 +8,12 @@ https://airtable.com/shrs71ccUVKyvLlUA/tbl6Br4W3IyPGk1jt/viw7AlEju6qFtXJqL?block
 
 Would be great if you could help!
 
-- Backend (currently we use node.js with mongodb) [Daniel Böber](https://github.com/smarthomeagentur)
-- Frontend (react native (expo)) [Robert Gühne](https://github.com/Utzel-Butzel)
-- Testing (giving feedback on bugs, testing in real life environments)
-- Communications & organisation [Chris Walter]()
-- Media (creating communication material, presentations, videos, etc.)
-- CI/CD, Devops (currently we use AWS EC2 and cloudfront)
+- **Backend** (currently we use node.js with mongodb) [Daniel Böber](https://github.com/smarthomeagentur)
+- **Frontend** (react native (expo)) [Robert Gühne](https://github.com/Utzel-Butzel)
+- **Testing** (giving feedback on bugs, testing in real life environments)
+- **Communications & organisation** [Chris Walter]()
+- **Media** (creating communication material, presentations, videos, etc.)
+- **CI/CD, Devops** (currently we use AWS EC2 and cloudfront)
 
 ### Corona Tracker
 
@@ -23,6 +23,18 @@ The app informs you, if you had contact with an infected patient.
 
 Dafür wird im Hintergrund die Bewegung des Nutzers aufgezeichnet und mit den Bewegungsdaten von Patienten verglichen.
 Der Abgleich funktioniert, ohne dass dein Bewegungsprofil geteilt werden muss, nur im Falle einer Infektion hast du die Möglichkeit dieses anderen Nutzern bereitzustellen.
+
+### Data security
+
+No tracking data will be shared unless you want to share the because you've got infected.
+
+### How it works
+
+The app tracks your phones movement and saves it on the device.
+The app downloads anonymous position data of infected patients and compares them with your movements.
+This can cause an alarm like: `You've attended Event XYZ! A person that is now infected with COVID-19 was at the same place and you had contact for 30 min`
+
+If you got infected you can anonymously share your positions of the last 1-2 weeks.
 
 ### How to use
 
