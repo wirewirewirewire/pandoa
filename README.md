@@ -36,12 +36,13 @@ This can cause an alarm like: `You've attended Event XYZ! A person that is now i
 
 If you got infected you can anonymously share your positions of the last 1-2 weeks.
 
-### The data behind
+### The tech behind
 
-![Infection chain tracker](https://raw.githubusercontent.com/wirewirewirewire/pandoa/master/assets/images/how-it-works.png =350x)
-**Blue lines** This is your own movement
-**Small black dots** These are the positions of infected patients
-**Red lines** This is when you have been in contact with an infected person (at the same position and the same time)
+[Infection chain tracker](https://raw.githubusercontent.com/wirewirewirewire/pandoa/master/assets/images/how-it-works.png =350x)
+
+- **Blue lines** This is your own movement
+- **Small black dots** These are the positions of infected patients
+- **Red lines** This is when you have been in contact with an infected person (at the same position and the same time)
 
 ### How to use
 
