@@ -40,6 +40,10 @@
       "infoPlist": {
         "UIBackgroundModes": ["location", "fetch"]
       }
+    },
+    "android": {
+      "package": "com.polyxo.pando",
+      "versionCode": 1
     }
   }
 }

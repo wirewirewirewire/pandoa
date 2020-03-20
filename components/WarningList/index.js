@@ -14,7 +14,9 @@ const options = {
 };
 
 function WarningList({ navigation, warnings }) {
-  const filteredWarnings = warnings.filter(e => e.matches.length >= 1);
+  const filteredWarnings = warnings.filter(
+    e => e.matches && e.matches.length >= 1
+  );
   return (
     <List>
       {filteredWarnings.map((e, i) => (
@@ -25,7 +27,7 @@ function WarningList({ navigation, warnings }) {
               {new Date(e.position.time).toLocaleDateString("de-DE", options)}
             </Text>
             <Text note numberOfLines={2}>
-              {e.matches.length >= 1
+              {e.matches && e.matches.length >= 1
                 ? `Contact for ${Math.round(e.duration / 1000 / 60)} min`
                 : "no contact found"}
             </Text>

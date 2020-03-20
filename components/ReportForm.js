@@ -22,8 +22,9 @@ import {
 function ReportForm({ reportCaseTrigger, positions }) {
   const { control, handleSubmit, errors } = useForm();
   const onSubmit = data => {
-    reportCaseTrigger(positions);
-    Alert.alert("Form Data", JSON.stringify(data), positions.length);
+    Alert.alert("Data submitted");
+    //reportCaseTrigger(positions);
+    // Alert.alert("Form Data", JSON.stringify(data), positions.length);
   };
 
   return (
