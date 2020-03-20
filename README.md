@@ -2,6 +2,8 @@
 
 https://airtable.com/shrs71ccUVKyvLlUA/tbl6Br4W3IyPGk1jt/viw7AlEju6qFtXJqL?blocks=hide
 
+![Infection chain tracker](https://raw.githubusercontent.com/wirewirewirewire/pandoa/master/assets/images/infection-chain-tracker.png)
+
 # How can I contribute?
 
 Would be great if you could help!
