@@ -16,6 +16,7 @@ import { clearAll } from "../actions";
 
 import { createStackNavigator } from "@react-navigation/stack";
 import WarningsScreen from "./WarningsScreen";
+import WarningDetailScreen from "./WarningDetailScreen";
 import ReportScreen from "./ReportIntroScreen";
 
 const Stack = createStackNavigator();
@@ -38,8 +39,20 @@ function HomeScreen(props) {
   return (
     <View style={styles.container}>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={WarningsScreen} />
-        <Stack.Screen name="Details" component={ReportScreen} />
+        <Stack.Screen
+          name="Home"
+          component={WarningsScreen}
+          options={{
+            headerTitle: "Warnings",
+            headerRight: () => (
+              <Button
+                onPress={() => alert("Add settings page here")}
+                title="Settings"
+              />
+            )
+          }}
+        />
+        <Stack.Screen name="WarningDetail" component={WarningDetailScreen} />
       </Stack.Navigator>
     </View>
   );

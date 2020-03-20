@@ -4,24 +4,38 @@ import { connect } from "react-redux";
 import { Body, Button, Right, List, ListItem, Text } from "native-base";
 import { getAllWarnings } from "../../selectors";
 
-function HistoryList({ warnings }) {
-  return null;
+const options = {
+  weekday: "short",
+  year: "numeric",
+  month: "numeric",
+  day: "numeric",
+  hour: "numeric",
+  minute: "numeric"
+};
+
+function WarningList({ navigation, warnings }) {
+  const filteredWarnings = warnings.filter(e => e.matches.length >= 1);
   return (
     <List>
-      {warnings.map((e, i) => (
+      {filteredWarnings.map((e, i) => (
         <ListItem key={i}>
           <Body>
             <Text>{e.title}</Text>
             <Text note numberOfLines={2} style={styles.date}>
-              Thuesday, 20.02.19 14:20
+              {new Date(e.position.time).toLocaleDateString("de-DE", options)}
             </Text>
             <Text note numberOfLines={2}>
-              {e.description}
+              {e.matches.length >= 1
+                ? `Contact for ${Math.round(e.duration / 1000 / 60)} min`
+                : "no contact found"}
             </Text>
           </Body>
           <Right>
-            <Button transparent>
-              <Text>View</Text>
+            <Button
+              transparent
+              onPress={() => navigation.push("WarningDetail")}
+            >
+              <Text>Details</Text>
             </Button>
           </Right>
         </ListItem>
@@ -43,4 +57,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(HistoryList);
+export default connect(mapStateToProps)(WarningList);

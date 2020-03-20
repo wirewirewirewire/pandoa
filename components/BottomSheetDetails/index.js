@@ -2,8 +2,7 @@ import React, { Component } from "react";
 
 import { StyleSheet, View, Dimensions, TouchableOpacity } from "react-native";
 import BottomSheet from "reanimated-bottom-sheet";
-import DeviceHistory from "../DeviceHistory";
-import { connect } from "react-redux";
+
 import { Button, Icon, StyleProvider, Text } from "native-base";
 import variable from "../../native-base-theme/variables/platform";
 import HistoryList from "../HistoryList";
