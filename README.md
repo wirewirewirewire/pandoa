@@ -8,10 +8,11 @@ https://airtable.com/shrs71ccUVKyvLlUA/tbl6Br4W3IyPGk1jt/viw7AlEju6qFtXJqL?block
 
 Would be great if you could help!
 
-- Backend (currently we use node.js with mongodb)
-- Frontend (react native (expo))
-- Testing
-- Communications & orga
+- Backend (currently we use node.js with mongodb) [Daniel Böber](https://github.com/smarthomeagentur)
+- Frontend (react native (expo)) [Robert Gühne](https://github.com/Utzel-Butzel)
+- Testing (giving feedback on bugs, testing in real life environments)
+- Communications & organisation [Chris Walter]()
+- Media (creating communication material, presentations, videos, etc.)
 - CI/CD, Devops (currently we use AWS EC2 and cloudfront)
 
 ### Corona Tracker
