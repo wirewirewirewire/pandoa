@@ -1,5 +1,5 @@
 import * as Location from "expo-location";
-const LOCATION_TRACKING = "location-tracking";
+import { LOCATION_TRACKING } from "../constants/Tracking";
 
 const startLocationTracking = async () => {
   await Location.startLocationUpdatesAsync(LOCATION_TRACKING, {
@@ -10,7 +10,8 @@ const startLocationTracking = async () => {
   const hasStarted = await Location.hasStartedLocationUpdatesAsync(
     LOCATION_TRACKING
   );
-  console.log("tracking started?bb", hasStarted);
+  console.log("tracking started?", hasStarted);
+  return hasStarted;
 };
 
 export default startLocationTracking;

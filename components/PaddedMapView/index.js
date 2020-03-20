@@ -6,7 +6,7 @@ import { getAllPositions } from "../../selectors";
 const EDGE_PADDING = {
   top: 30,
   right: 30,
-  bottom: 200,
+  bottom: 100,
   left: 30
 };
 
@@ -14,7 +14,7 @@ class PaddedMapView extends Component {
   fitToMarkers = () => {
     const options = {
       edgePadding: EDGE_PADDING,
-      animated: false // optional
+      animated: false
     };
 
     const points = this.props.positions.map(point => {

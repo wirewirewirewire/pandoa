@@ -26,10 +26,9 @@ import { StyleProvider } from "native-base";
 import getTheme from "./native-base-theme/components";
 import material from "./native-base-theme/variables/commonColor";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { LOCATION_TRACKING } from "./constants/Tracking";
 //import getTheme from "native-base/dist/src/theme/components";
 //import material from "native-base/dist/src/theme/variables/material";
-
-const LOCATION_TRACKING = "location-tracking";
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);

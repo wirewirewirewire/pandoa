@@ -89,8 +89,9 @@ const MapHistory = ({ positions, tracks }) => {
     if (point.matches && point.matches.length >= 1) {
       return (
         <>
-          {point.matches.map(e => (
+          {point.matches.map((e, i) => (
             <Polyline
+              key={i}
               coordinates={[
                 { latitude: point.position.lat, longitude: point.position.lng },
                 { latitude: e.lat, longitude: e.lng }
@@ -119,11 +120,13 @@ const MapHistory = ({ positions, tracks }) => {
           "de-DE",
           options
         )}`}
-        description={`Contact for ${Math.round(
-          point.duration / 1000 / 60
-        )} min`}
+        description={
+          point.matches.length >= 1
+            ? `Contact for ${Math.round(point.duration / 1000 / 60)} min`
+            : "no contact found"
+        }
       >
-        {point.matches && point.matches.length >= 1 ? (
+        {point.matches.length >= 1 ? (
           <View style={styles.matchCircle}>
             <View style={styles.matchCircleBackground}></View>
             <View style={styles.matchCircleInner}></View>

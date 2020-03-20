@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Image,
@@ -15,20 +15,32 @@ import { connect } from "react-redux";
 
 import { MonoText } from "../components/StyledText";
 import startLocationTracking from "../helpers/startLocationTracking";
-import { clearAll, downloadInfections } from "../actions";
+import { clearAll, downloadInfections, generateWarnings } from "../actions";
 import WarningList from "../components/WarningList";
 import WarningGenerator from "../components/WarningGenerator";
-import { countTracks } from "../selectors";
+import {
+  countTracks,
+  countPositions,
+  getAllPositions,
+  getAllTracks
+} from "../selectors";
+import stopLocationTracking from "../helpers/stopLocationTracking";
 
 function HomeScreen(props) {
+  const [trackingStatus, setTrackingStatus] = useState(false);
+
   const {
     clearAllTrigger,
     downloadInfectionsTrigger,
+    generateWarningsTrigger,
+    positions,
+    tracks,
     positionsCount,
+    tracksCount,
     navigation
   } = props;
 
-  console.log("props", clearAllTrigger);
+  console.log("trackingStatus", trackingStatus);
   return (
     <View style={styles.container}>
       <ScrollView
@@ -39,10 +51,29 @@ function HomeScreen(props) {
         <WarningGenerator navigation={navigation} />
 
         <View style={styles.getStartedContainer}>
-          <Button title="Start tracking" onPress={startLocationTracking} />
+          <Text>
+            {trackingStatus ? "Tracking active" : "Tracking disabled"}
+          </Text>
           <Button
-            title={`Get data from server${positionsCount}`}
+            title={`Start tracking current: (${positionsCount})`}
+            onPress={() => setTrackingStatus(startLocationTracking)}
+          />
+
+          <Button
+            title={`Stop tracking`}
+            onPress={() => {
+              stopLocationTracking();
+              setTrackingStatus(false);
+            }}
+          />
+
+          <Button
+            title={`Get data from server current: (${tracksCount})`}
             onPress={e => downloadInfectionsTrigger()}
+          />
+          <Button
+            title={`Generate warningss`}
+            onPress={e => generateWarningsTrigger({ positions, tracks })}
           />
           <Button title="reset" onPress={e => clearAllTrigger()} />
         </View>
@@ -181,11 +212,15 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    positionsCount: countTracks(state)
+    tracksCount: countTracks(state),
+    positionsCount: countPositions(state),
+    positions: getAllPositions(state),
+    tracks: getAllTracks(state)
   };
 };
 
 const mapDispatchToProps = dispatch => ({
+  generateWarningsTrigger: data => dispatch(generateWarnings(data)),
   clearAllTrigger: id => dispatch(clearAll(id)),
   downloadInfectionsTrigger: id => dispatch(downloadInfections(id))
 });

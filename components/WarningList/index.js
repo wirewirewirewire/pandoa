@@ -5,6 +5,7 @@ import { Body, Button, Right, List, ListItem, Text } from "native-base";
 import { getAllWarnings } from "../../selectors";
 
 function HistoryList({ warnings }) {
+  return null;
   return (
     <List>
       {warnings.map((e, i) => (
