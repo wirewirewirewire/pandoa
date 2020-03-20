@@ -1,3 +1,5 @@
+![Infection chain tracker](https://raw.githubusercontent.com/wirewirewirewire/pandoa/master/assets/images/infection-chain-tracker.png)
+
 # Work in progress
 
 ### Corona Tracker
@@ -15,6 +17,8 @@ Der Abgleich funktioniert, ohne dass dein Bewegungsprofil geteilt werden muss, n
 npm install
 npm start
 ```
+
+![Infection chain tracker](https://raw.githubusercontent.com/wirewirewirewire/pandoa/master/assets/images/infection-chain-tracker.png)
 
 ### Credits
 
