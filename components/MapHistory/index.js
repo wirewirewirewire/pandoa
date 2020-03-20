@@ -30,6 +30,15 @@ const diffCalc = (position, track) => {
   return { distance, timeDifference };
 };
 
+const options = {
+  weekday: "short",
+  year: "numeric",
+  month: "numeric",
+  day: "numeric",
+  hour: "numeric",
+  minute: "numeric"
+};
+
 const MapHistory = ({ positions, tracks }) => {
   const lines = positions.map(point => {
     return {
@@ -39,7 +48,7 @@ const MapHistory = ({ positions, tracks }) => {
   });
 
   const connectedPoints = positions.map((position, i) => {
-    const matches = tracks.filter((track, i) => {
+    var matches = tracks.filter((track, i) => {
       const diff = diffCalc(position, track);
       if (diff.distance <= 50 && diff.timeDifference <= 1000 * 60 * 60 * 24) {
         return { track, distance: diff.distance };
@@ -47,14 +56,25 @@ const MapHistory = ({ positions, tracks }) => {
         return null;
       }
     });
-    return { position, matches };
+
+    matches.sort((a, b) => {
+      return Date.parse(a.time) - Date.parse(b.time);
+    });
+
+    let duration = 0;
+    if (matches.length !== 0) {
+      duration = Math.abs(
+        Date.parse(matches[0].time) -
+          Date.parse(matches[matches.length - 1].time)
+      );
+    }
+    return { position, matches, duration };
   });
 
   var concatPoints = [];
   connectedPoints.forEach((position, i) => {
     const foundSimilar = concatPoints.findIndex(existingPoint => {
       const diff = diffCalc(position, existingPoint);
-      //console.log("comp", position, existingPoint, diff);
       if (diff.distance <= 100 && diff.timeDifference <= 1000 * 60 * 60 * 2) {
         return true;
       }
@@ -95,8 +115,13 @@ const MapHistory = ({ positions, tracks }) => {
       <Marker
         key={index}
         coordinate={coordinates}
-        title="Lorem ipsum"
-        description="Haloo"
+        title={`${new Date(point.position.time).toLocaleDateString(
+          "de-DE",
+          options
+        )}`}
+        description={`Contact for ${Math.round(
+          point.duration / 1000 / 60
+        )} min`}
       >
         {point.matches && point.matches.length >= 1 ? (
           <View style={styles.matchCircle}>

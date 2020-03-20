@@ -24,3 +24,8 @@ export const reportCase = data => ({
   type: types.API_CALL_REPORT_REQUEST,
   data
 });
+
+export const generateWarnings = data => ({
+  type: types.GENERATE_WARNINGS,
+  data
+});

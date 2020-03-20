@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     width: 3, // 50,
     height: 3, // 50,
     borderRadius: 50 / 2,
-    opacity: 1, //0.01,
+    opacity: 0.3, //0.01,
     backgroundColor: "#000" //Colors.tintColor
   }
 });
