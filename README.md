@@ -1,4 +1,16 @@
-# Work in progress
+# WirVsVirus ID: 0348 0008
+
+https://airtable.com/shrs71ccUVKyvLlUA/tbl6Br4W3IyPGk1jt/viw7AlEju6qFtXJqL?blocks=hide
+
+# How can I contribute?
+
+Would be great if you could help!
+
+- Backend (currently we use node.js with mongodb)
+- Frontend (react native (expo))
+- Testing
+- Communications & orga
+- CI/CD, Devops (currently we use AWS EC2 and cloudfront)
 
 ### Corona Tracker
 
@@ -12,9 +24,15 @@ Der Abgleich funktioniert, ohne dass dein Bewegungsprofil geteilt werden muss, n
 ### How to use
 
 ```
+// Install the expo cli
+npm install -g expo-cli
 npm install
 npm start
 ```
+
+### Roadmap
+
+Webapp
 
 ### Credits
 
