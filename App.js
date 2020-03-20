@@ -25,6 +25,7 @@ import { addTodo } from "./actions";
 import { StyleProvider } from "native-base";
 import getTheme from "./native-base-theme/components";
 import material from "./native-base-theme/variables/commonColor";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 //import getTheme from "native-base/dist/src/theme/components";
 //import material from "native-base/dist/src/theme/variables/material";
 
@@ -84,14 +85,13 @@ export default function App(props) {
         <PersistGate loading={null} persistor={Store().persistor}>
           <StyleProvider style={getTheme(material)}>
             <View style={styles.container}>
-              {Platform.OS === "ios" && <StatusBar barStyle="default" />}
+              {/* Platform.OS === "ios" && <StatusBar barStyle="default" /> */}
 
-              <Button title="Start tracking" onPress={startLocationTracking} />
               <NavigationContainer
                 ref={containerRef}
                 initialState={initialNavigationState}
               >
-                <Stack.Navigator>
+                <Stack.Navigator headerMode="none">
                   <Stack.Screen name="Root" component={BottomTabNavigator} />
                 </Stack.Navigator>
               </NavigationContainer>

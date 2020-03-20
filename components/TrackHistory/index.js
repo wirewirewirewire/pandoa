@@ -69,11 +69,11 @@ const mapStateToProps = state => {
 
 const styles = StyleSheet.create({
   historyCircle: {
-    width: 50,
-    height: 50,
+    width: 3, // 50,
+    height: 3, // 50,
     borderRadius: 50 / 2,
-    opacity: 0.03,
-    backgroundColor: Colors.tintColor
+    opacity: 1, //0.01,
+    backgroundColor: "#000" //Colors.tintColor
   }
 });
 

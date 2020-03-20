@@ -12,17 +12,12 @@ const EDGE_PADDING = {
 
 class PaddedMapView extends Component {
   fitToMarkers = () => {
-    console.log("fit markers");
-    const markers = React.Children.map(
-      this.props.children,
-      child => child.props.coordinate
-    );
     const options = {
       edgePadding: EDGE_PADDING,
       animated: false // optional
     };
 
-    const points = this.props.positions.map((point, index) => {
+    const points = this.props.positions.map(point => {
       return {
         longitude: point.lng,
         latitude: point.lat

@@ -140,6 +140,7 @@ export default {
 
   // Container
   containerBgColor: "#fff",
+  containerDarkBgColor: "#F5F7FA",
 
   // Date Picker
   datePickerTextColor: "#000",
@@ -269,6 +270,7 @@ export default {
 
   // Text
   textColor: "#000",
+  textColorLight: "#9098A4",
   inverseTextColor: "#fff",
   noteFontSize: 14,
   get defaultTextColor() {

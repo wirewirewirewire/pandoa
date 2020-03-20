@@ -19,7 +19,10 @@ export default function BottomTabNavigator({ navigation, route }) {
   });
 
   return (
-    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
+    <BottomTab.Navigator
+      initialRouteName={INITIAL_ROUTE_NAME}
+      headerMode="none"
+    >
       <BottomTab.Screen
         name="Home"
         component={HomeScreen}

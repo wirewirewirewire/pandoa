@@ -16,7 +16,7 @@ import { clearAll } from "../actions";
 
 import { createStackNavigator } from "@react-navigation/stack";
 import WarningsScreen from "./WarningsScreen";
-import ReportScreen from "./ReportScreen";
+import ReportScreen from "./ReportIntroScreen";
 
 const Stack = createStackNavigator();
 
@@ -36,10 +36,12 @@ function HomeScreen(props) {
 
   console.log("props", clearAllTrigger);
   return (
-    <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen name="Home" component={WarningsScreen} />
-      <Stack.Screen name="Details" component={ReportScreen} />
-    </Stack.Navigator>
+    <View style={styles.container}>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={WarningsScreen} />
+        <Stack.Screen name="Details" component={ReportScreen} />
+      </Stack.Navigator>
+    </View>
   );
 }
 
@@ -85,7 +87,7 @@ function handleHelpPress() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff"
+    backgroundColor: "green" // "#fff",
   },
   developmentModeText: {
     marginBottom: 20,

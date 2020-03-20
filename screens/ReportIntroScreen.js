@@ -4,6 +4,7 @@ import { Button, Text } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 import { RectButton, ScrollView } from "react-native-gesture-handler";
 import VirusImage from "../assets/images/virus-image-01";
+import commonColor from "../native-base-theme/variables/commonColor";
 //import VirusImage from "../assets/images/infoSimple";
 
 export default function ReportIntroScreen({ navigation }) {
@@ -31,10 +32,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: commonColor.containerDarkBgColor
   },
   contentContainer: {
-    backgroundColor: "green",
     justifyContent: "center",
     alignItems: "center"
   },
@@ -51,18 +52,17 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
-    marginBottom: 15
+    marginBottom: 10
   },
   subTitle: {
     textAlign: "center",
-    marginLeft: 10,
-    marginRight: 10,
-    marginBottom: 15
+    fontSize: 15,
+    color: commonColor.textColorLight,
+    marginLeft: 40,
+    marginRight: 40,
+    marginBottom: 20
   },
   contentContainer: {
     paddingTop: 15
-  },
-  optionIconContainer: {
-    marginRight: 12
   }
 });

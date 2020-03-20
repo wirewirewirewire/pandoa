@@ -13,43 +13,79 @@ import {
 import { getAllPositions, getAllTracks } from "../../selectors";
 import Colors from "../../constants/Colors";
 import latLngDistance from "../../helpers/latLngDistance";
+import commonColor from "../../native-base-theme/variables/commonColor";
+
+const diffCalc = (position, track) => {
+  const distance = latLngDistance(
+    track.lat,
+    track.lng,
+    position.lat,
+    position.lng,
+    "M"
+  );
+
+  const timeDifference = Math.abs(
+    Date.parse(position.time) - Date.parse(track.time)
+  );
+  return { distance, timeDifference };
+};
 
 const MapHistory = ({ positions, tracks }) => {
   const lines = positions.map(point => {
-    //if (point.gps_lng && point.gps_lng) {
     return {
       latitude: point.lat ? point.lat : 0,
       longitude: point.lng ? point.lng : 0
     };
   });
-  //updateMap(pointIDs);s
 
   const connectedPoints = positions.map((position, i) => {
-    var combination = [];
-    const matches = tracks.find((track, i) => {
-      //console.log(track.lat, position.lat);
-      const distance = latLngDistance(
-        track.lat,
-        track.lng,
-        position.lat,
-        position.lng,
-        "M"
-      );
-      if (distance <= 100) {
-        //combination.push(track);
-        return { track, distance };
+    const matches = tracks.filter((track, i) => {
+      const diff = diffCalc(position, track);
+      if (diff.distance <= 50 && diff.timeDifference <= 1000 * 60 * 60 * 24) {
+        return { track, distance: diff.distance };
       } else {
         return null;
       }
     });
-
     return { position, matches };
   });
 
-  console.log("connectedPoints", connectedPoints);
+  var concatPoints = [];
+  connectedPoints.forEach((position, i) => {
+    const foundSimilar = concatPoints.findIndex(existingPoint => {
+      const diff = diffCalc(position, existingPoint);
+      //console.log("comp", position, existingPoint, diff);
+      if (diff.distance <= 100 && diff.timeDifference <= 1000 * 60 * 60 * 2) {
+        return true;
+      }
+    });
+    if (foundSimilar === -1) {
+      concatPoints.push(position);
+    }
+  });
+
+  const connectedLines = connectedPoints.map((point, index) => {
+    console.log(connectedLines, point);
+    if (point.matches && point.matches.length >= 1) {
+      return (
+        <>
+          {point.matches.map(e => (
+            <Polyline
+              coordinates={[
+                { latitude: point.position.lat, longitude: point.position.lng },
+                { latitude: e.lat, longitude: e.lng }
+              ]}
+              strokeColor="rgba(255,0,0,0.1)" // fallback for when `strokeColors` is not supported by the map-provider
+              strokeColors={["rgba(255,0,0,0.1)", "rgba(255,168,12,0.1)"]}
+              strokeWidth={15.5}
+            />
+          ))}
+        </>
+      );
+    }
+  });
 
   const points = connectedPoints.map((point, index) => {
-    if (!point) return null;
     const coordinates = {
       longitude: point.position.lng,
       latitude: point.position.lat
@@ -62,61 +98,29 @@ const MapHistory = ({ positions, tracks }) => {
         title="Lorem ipsum"
         description="Haloo"
       >
-        {point.matches ? (
-          <View
-            style={[
-              styles.matchCircle,
-              {
-                backgroundColor:
-                  point.matches && point.matches.length > 1 ? "red" : "blue"
-              }
-            ]}
-          ></View>
+        {point.matches && point.matches.length >= 1 ? (
+          <View style={styles.matchCircle}>
+            <View style={styles.matchCircleBackground}></View>
+            <View style={styles.matchCircleInner}></View>
+          </View>
         ) : (
           <View style={styles.historyCircle} />
         )}
-        {/*<View
-          style={[
-            styles.matchCircle,
-            {
-              backgroundColor:
-                point.matches && point.matches.length > 1 ? "red" : "blue"
-            }
-          ]}
-        ></View>*/}
-        {/*<MapView.Callout
-          style={{
-            minWidth: 150,
-            backgroundColor: "white",
-            padding: 10,
-            shadowColor: "#000",
-            shadowOffset: {
-              width: 0,
-              height: 2
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 3.84,
-
-            elevation: 5
-          }}
-          tooltip={true}
-          //onPress={() => this.onCalloutPress(idKey)}
-        >
-          <Text>Whooo{point.matches && point.matches.length}</Text>
-        </MapView.Callout>*/}
       </Marker>
     );
   });
 
   return (
     <React.Fragment>
-      {points}
       <Polyline
         coordinates={lines}
         geodesic={true}
-        strokeColor={Colors.tintColor} // fallback for when `strokeColors` is not supported by the map-provider
+        // strokeColor={Colors.tintColor}  fallback for when `strokeColors` is not supported by the map-provider
         strokeWidth={2}
+        strokeColor="rgba(0,122,255,0.7)"
       />
+      {connectedLines}
+      {points}
     </React.Fragment>
   );
 };
@@ -138,12 +142,28 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.tintColor
   },
   matchCircle: {
-    width: 25,
-    height: 25,
+    width: 40,
+    height: 40,
+    borderRadius: 40 / 2
+  },
+  matchCircleBackground: {
+    position: "absolute",
+    width: 40,
+    height: 40,
+    borderRadius: 40 / 2,
+    opacity: 0.1,
+    backgroundColor: commonColor.brandDanger
+  },
+  matchCircleInner: {
+    position: "absolute",
+    width: 12,
+    height: 12,
+    left: 14,
+    top: 14,
     borderColor: "white",
-    borderWidth: 1,
-    borderRadius: 20 / 2,
-    backgroundColor: Colors.tintColor
+    borderWidth: 2,
+    borderRadius: 25 / 2,
+    backgroundColor: commonColor.brandDanger
   }
 });
 
