@@ -18,8 +18,6 @@ npm install
 npm start
 ```
 
-![Infection chain tracker](https://raw.githubusercontent.com/wirewirewirewire/pandoa/master/assets/images/infection-chain-tracker.png)
-
 ### Credits
 
 Illustrations
