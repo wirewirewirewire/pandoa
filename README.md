@@ -37,6 +37,12 @@ npm start
 
 Webapp
 
+### License
+
+The whole application is **open source**. Do whatever you want with it :)
+
+[GNU/GPL](https://github.com/wirewirewirewire/pandoa/blob/master/LICENSE)
+
 ### Credits
 
 Illustrations
