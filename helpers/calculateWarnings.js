@@ -1,5 +1,7 @@
 import latLngDistance from "./latLngDistance";
 
+const DISTANCE = 130;
+const TIME_DIFFERENCE = 1000 * 60 * 60 * 24;
 const diffCalc = (position, track) => {
   const distance = latLngDistance(
     track.lat,
@@ -19,7 +21,7 @@ const calcConnections = ({ positions, tracks }) => {
   const connectedPoints = positions.map((position, i) => {
     var matches = tracks.filter((track, i) => {
       const diff = diffCalc(position, track);
-      if (diff.distance <= 50 && diff.timeDifference <= 1000 * 60 * 60 * 24) {
+      if (diff.distance <= DISTANCE && diff.timeDifference <= TIME_DIFFERENCE) {
         return { track, distance: diff.distance };
       } else {
         return null;

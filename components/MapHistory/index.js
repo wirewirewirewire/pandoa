@@ -1,16 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import MapView, { Marker, Polyline } from "react-native-maps";
-import {
-  StyleSheet,
-  View,
-  Dimensions,
-  Image,
-  Text,
-  TouchableOpacity,
-  TouchableWithoutFeedback
-} from "react-native";
-import { getAllPositions, getAllTracks } from "../../selectors";
+import { StyleSheet, View } from "react-native";
+import { getAllPositions, getAllTracks, getAllWarnings } from "../../selectors";
 import Colors from "../../constants/Colors";
 import latLngDistance from "../../helpers/latLngDistance";
 import commonColor from "../../native-base-theme/variables/commonColor";
@@ -39,7 +31,7 @@ const options = {
   minute: "numeric"
 };
 
-const MapHistory = ({ positions, tracks }) => {
+const MapHistory = ({ positions, tracks, warnings }) => {
   const lines = positions.map(point => {
     return {
       latitude: point.lat ? point.lat : 0,
@@ -47,29 +39,7 @@ const MapHistory = ({ positions, tracks }) => {
     };
   });
 
-  const connectedPoints = positions.map((position, i) => {
-    var matches = tracks.filter((track, i) => {
-      const diff = diffCalc(position, track);
-      if (diff.distance <= 50 && diff.timeDifference <= 1000 * 60 * 60 * 24) {
-        return { track, distance: diff.distance };
-      } else {
-        return null;
-      }
-    });
-
-    matches.sort((a, b) => {
-      return Date.parse(a.time) - Date.parse(b.time);
-    });
-
-    let duration = 0;
-    if (matches.length !== 0) {
-      duration = Math.abs(
-        Date.parse(matches[0].time) -
-          Date.parse(matches[matches.length - 1].time)
-      );
-    }
-    return { position, matches, duration };
-  });
+  const connectedPoints = warnings;
 
   var concatPoints = [];
   connectedPoints.forEach((position, i) => {
@@ -84,25 +54,23 @@ const MapHistory = ({ positions, tracks }) => {
     }
   });
 
+  //   strokeColor="rgba(255,0,0,0.1)" // fallback for when `strokeColors` is not supported by the map-provider
+  //strokeColors={["rgba(255,0,0,0.1)", "rgba(255,168,12,0.1)"]}
+
   const connectedLines = connectedPoints.map((point, index) => {
-    console.log(connectedLines, point);
     if (point.matches && point.matches.length >= 1) {
-      return (
-        <>
-          {point.matches.map((e, i) => (
-            <Polyline
-              key={i}
-              coordinates={[
-                { latitude: point.position.lat, longitude: point.position.lng },
-                { latitude: e.lat, longitude: e.lng }
-              ]}
-              strokeColor="rgba(255,0,0,0.1)" // fallback for when `strokeColors` is not supported by the map-provider
-              strokeColors={["rgba(255,0,0,0.1)", "rgba(255,168,12,0.1)"]}
-              strokeWidth={15.5}
-            />
-          ))}
-        </>
-      );
+      return point.matches.map((e, i) => (
+        <Polyline
+          key={`${i}-${index}`}
+          coordinates={[
+            { latitude: point.position.lat, longitude: point.position.lng },
+            { latitude: e.lat, longitude: e.lng }
+          ]}
+          strokeColor="rgba(255,0,0,0.1)" // fallback for when `strokeColors` is not supported by the map-provider
+          strokeColors={["rgba(255,0,0,0.1)", "rgba(255,168,12,0.1)"]}
+          strokeWidth={15.5}
+        />
+      ));
     }
   });
 
@@ -115,6 +83,7 @@ const MapHistory = ({ positions, tracks }) => {
     return (
       <Marker
         key={index}
+        anchor={Platform.OS === "ios" ? { x: 0, y: 0 } : { x: 0.53, y: 0.53 }}
         coordinate={coordinates}
         title={`${new Date(point.position.time).toLocaleDateString(
           "de-DE",
@@ -138,6 +107,9 @@ const MapHistory = ({ positions, tracks }) => {
     );
   });
 
+  //
+  //
+  //
   return (
     <React.Fragment>
       <Polyline
@@ -155,6 +127,7 @@ const MapHistory = ({ positions, tracks }) => {
 
 const mapStateToProps = state => {
   return {
+    warnings: getAllWarnings(state),
     positions: getAllPositions(state),
     tracks: getAllTracks(state)
   };
@@ -162,32 +135,31 @@ const mapStateToProps = state => {
 
 const styles = StyleSheet.create({
   historyCircle: {
-    width: 5,
-    height: 5,
+    width: Platform.OS === "ios" ? 15 : 10,
+    height: Platform.OS === "ios" ? 15 : 10,
     borderColor: "white",
     borderWidth: 1,
-    borderRadius: 20 / 2,
-    backgroundColor: Colors.tintColor
+    borderRadius: 50
   },
   matchCircle: {
-    width: 40,
-    height: 40,
-    borderRadius: 40 / 2
+    width: Platform.OS === "ios" ? 40 : 30,
+    height: Platform.OS === "ios" ? 40 : 30,
+    borderRadius: 50
   },
   matchCircleBackground: {
     position: "absolute",
-    width: 40,
-    height: 40,
-    borderRadius: 40 / 2,
+    width: Platform.OS === "ios" ? 40 : 30,
+    height: Platform.OS === "ios" ? 40 : 30,
+    borderRadius: 50,
     opacity: 0.1,
     backgroundColor: commonColor.brandDanger
   },
   matchCircleInner: {
     position: "absolute",
-    width: 12,
-    height: 12,
-    left: 14,
-    top: 14,
+    width: Platform.OS === "ios" ? 12 : 12,
+    height: Platform.OS === "ios" ? 12 : 12,
+    left: Platform.OS === "ios" ? 14 : 10,
+    top: Platform.OS === "ios" ? 14 : 10,
     borderColor: "white",
     borderWidth: 2,
     borderRadius: 25 / 2,

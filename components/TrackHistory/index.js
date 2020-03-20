@@ -1,15 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import MapView, { Marker, Heatmap, Polyline } from "react-native-maps";
-import {
-  StyleSheet,
-  View,
-  Dimensions,
-  Image,
-  Text,
-  TouchableOpacity,
-  TouchableWithoutFeedback
-} from "react-native";
+import MapView, { Circle, Heatmap, Polyline } from "react-native-maps";
+import { StyleSheet, Platform } from "react-native";
 import { getAllPositions, getAllTracks } from "../../selectors";
 import Colors from "../../constants/Colors";
 
@@ -29,9 +21,12 @@ const MapHistory = ({ positions }) => {
       latitude: point.lat
     };
     return (
-      <Marker key={index} coordinate={coordinates}>
-        <View style={styles.historyCircle}></View>
-      </Marker>
+      <Circle
+        key={index}
+        center={coordinates}
+        fillColor="#000"
+        radius={Platform.OS === "ios" ? 1 : 0.1}
+      />
     );
   });
 

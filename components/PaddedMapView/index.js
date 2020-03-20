@@ -12,6 +12,8 @@ const EDGE_PADDING = {
 
 class PaddedMapView extends Component {
   fitToMarkers = () => {
+    if (this.props.positions.length === 0) return null;
+
     const options = {
       edgePadding: EDGE_PADDING,
       animated: false
