@@ -38,7 +38,7 @@ class BottomSheetDetails extends Component {
       <BottomSheet
         ref={bottomSheetRef}
         contentPosition={contentPosition}
-        snapPoints={[60, 238, 600]}
+        snapPoints={[60, 400, 600]}
         initialSnap={2}
         renderContent={renderInnerDetails}
         renderHeader={renderInnerHeader}

@@ -52,7 +52,7 @@ class MapScreen extends Component {
         />
         <BottomSheetSingle detail={detail} navigation={this.props.navigation} />
         <PaddedMapView
-          style={{ flex: 1 }}
+          style={{ height: Dimensions.get("window").height - 75 }}
           initialRegion={{
             latitude: 37.78825,
             longitude: -122.4324,
