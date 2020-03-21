@@ -1,7 +1,12 @@
-#  Pandoa WirVsVirus
+# Pandoa WirVsVirus
+
 [WirVsVirus ID: 0348 0008](thttps://airtable.com/shrs71ccUVKyvLlUA/tbl6Br4W3IyPGk1jt/viw7AlEju6qFtXJqL?blocks=hide)
 
 ![Infection chain tracker](https://raw.githubusercontent.com/wirewirewirewire/pandoa/master/assets/images/infection-chain-tracker.png)
+
+[DevPost](https://devpost.com/software/08_pandoa-corona-virus-tracker)
+
+Slack: #pandoa_coronaviruscarriertracker
 
 # How can I contribute?
 
@@ -57,6 +62,7 @@ npm start
 ```
 
 ### Backend
+
 The backend is node.js (express) with a mondoDB (mongoose).
 https://github.com/wirewirewirewire/pandoa-backend
 
@@ -69,6 +75,15 @@ Webapp
 The whole application is **open source**. Do whatever you want with it :)
 
 [GNU/GPL](https://github.com/wirewirewirewire/pandoa/blob/master/LICENSE)
+
+### Similar solutions from the hackathlon
+
+https://github.com/beat-virus/corona_tracker
+https://github.com/mk0/infectionchain_tracking
+https://bs-sd.de/corona/
+https://github.com/rehfeldchris/cmpe272
+https://play.google.com/store/apps/details?id=cat.gencat.mobi.StopCovid19Cat
+https://play.google.com/store/apps/details?id=sg.gov.tech.bluetrace
 
 ### Credits
 
