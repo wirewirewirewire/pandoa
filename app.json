@@ -43,7 +43,7 @@
     },
     "android": {
       "package": "com.polyxo.pando",
-      "versionCode": 1
+      "versionCode": 2
     }
   }
 }

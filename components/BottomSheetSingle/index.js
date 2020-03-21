@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import { StyleSheet, View, Dimensions, TouchableOpacity } from "react-native";
 import BottomSheet from "reanimated-bottom-sheet";
-import { List, ListItem, Text } from "native-base";
+import { Body, List, ListItem, Text } from "native-base";
 import variable from "../../native-base-theme/variables/platform";
 import { connect } from "react-redux";
 import {
@@ -22,14 +22,63 @@ const options = {
   minute: "numeric"
 };
 
-class BottomSheetSingle extends Component {
-  constructor(props) {
-    super(props);
-    this.bottomSheetRef = React.createRef();
-  }
+function BottomSheetSingle({
+  downloadCaseTrigger,
+  caseEl,
+  contentPosition,
+  detail,
+  setDetailTrigger,
+  warning
+}) {
+  const [detailState, setDetail] = useState(detail);
+  const bottomSheetRef = useRef();
+
+  console.log("bottomSheetRef", detailState, detail);
+
+  useEffect(() => {
+    console.log("detail updated", detail);
+    let snap = 0;
+    if (detail !== false) {
+      console.log("haswarning", warning);
+      if (warning && warning.matches) {
+        downloadCaseTrigger({
+          lat: warning.matches[0].lat,
+          lng: warning.matches[0].lng,
+          time: warning.matches[0].time
+        });
+      }
+      snap = 1;
+    }
+    //setTimeout(() => {
+    bottomSheetRef.current.snapTo(snap);
+    //}, 200);
+  }, [detail]);
+
+  /*if (detailState !== detail) {
+    setDetail(detail);
+    console.log("bottomSheetRef", bottomSheetRef);
+
+    if (detail !== false) {
+      setTimeout(() => {
+        console.log("haswarning", warning);
+        if (warning && warning.matches) {
+          downloadCaseTrigger({
+            lat: warning.matches[0].lat,
+            lng: warning.matches[0].lng,
+            time: warning.matches[0].time
+          });
+        }
+        bottomSheetRef.current.snapTo(1);
+      }, 200);
+    } else {
+      setTimeout(() => {
+        bottomSheetRef.current.snapTo(0);
+      }, 200);
+    }
+  }*/
 
   //TODO: improve implementation
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  /*UNSAFE_componentWillReceiveProps(nextProps) {
     const { warning } = nextProps;
     if (nextProps.detail !== false) {
       setTimeout(() => {
@@ -49,91 +98,66 @@ class BottomSheetSingle extends Component {
       }, 200);
     }
   }
+*/
 
-  render() {
-    const { caseEl, contentPosition, setDetailTrigger, warning } = this.props;
-
-    /*
-       <List>
-      {filteredWarnings.map((e, i) => (
-        <ListItem key={i}>
-          <Body>
-            <Text>{e.title}</Text>
-            <Text note numberOfLines={2} style={styles.date}>
-              {new Date(e.position.time).toLocaleDateString("de-DE", options)}
+  const renderInnerDetails = () => {
+    return (
+      <View style={styles.panelInner}>
+        {warning && (
+          <>
+            <Text>
+              Contact for {Math.round(warning.duration / 1000 / 60)}min
             </Text>
-            <Text note numberOfLines={2}>
-              {e.matches && e.matches.length >= 1
-                ? `Contact for ${Math.round(e.duration / 1000 / 60)} min`
-                : "no contact found"}
-            </Text>
-          </Body>
-          <Right>
-            <Button transparent onPress={() => setDetailTrigger(i)}>
-              <Text>Details</Text>
-            </Button>
-          </Right>
-        </ListItem>
-      ))}
-    </List>
-    */
-    const renderInnerDetails = () => {
-      return (
-        <View style={styles.panelInner}>
-          {warning && (
-            <>
-              <Text>
-                Contact for {Math.round(warning.duration / 1000 / 60)}min
-              </Text>
-              <List>
-                {warning.matches.map((e, i) => (
-                  <ListItem key={i}>
+            <List>
+              {warning.matches.map((e, i) => (
+                <ListItem key={i}>
+                  <Body>
                     <Text>
                       {new Date(e.time).toLocaleDateString("de-DE", options)}
                     </Text>
-                  </ListItem>
-                ))}
-              </List>
-              <Text>{JSON.stringify(warning)}</Text>
-              <Text>CASE</Text>
-              <Text>{JSON.stringify(caseEl)}</Text>
-            </>
-          )}
-        </View>
-      );
-    };
-    const renderInnerHeader = () => {
-      return (
-        <View style={styles.headerInner}>
-          <View style={styles.panelHeader}>
-            <View style={styles.panelHandle} />
-          </View>
-
-          <View style={styles.close}>
-            <Text style={styles.panelTitle}>Detail</Text>
-            <TouchableOpacity
-              roundeds
-              light
-              onPress={() => setDetailTrigger(false)}
-              style={styles.panelClose}
-            >
-              <Text>x</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      );
-    };
-
-    return (
-      <BottomSheet
-        ref={this.bottomSheetRef}
-        contentPosition={contentPosition}
-        snapPoints={[0, 238, 600]}
-        renderContent={renderInnerDetails}
-        renderHeader={renderInnerHeader}
-      />
+                  </Body>
+                </ListItem>
+              ))}
+            </List>
+            <Text>{JSON.stringify(warning)}</Text>
+            <Text>CASE</Text>
+            <Text>{JSON.stringify(caseEl)}</Text>
+          </>
+        )}
+      </View>
     );
-  }
+  };
+  const renderInnerHeader = () => {
+    return (
+      <View style={styles.headerInner}>
+        <View style={styles.panelHeader}>
+          <View style={styles.panelHandle} />
+        </View>
+
+        <View style={styles.close}>
+          <Text style={styles.panelTitle}>Detail</Text>
+          <TouchableOpacity
+            roundeds
+            light
+            onPress={() => setDetailTrigger(false)}
+            style={styles.panelClose}
+          >
+            <Text>x</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  };
+
+  return (
+    <BottomSheet
+      ref={bottomSheetRef}
+      contentPosition={contentPosition}
+      snapPoints={[0, 238, 600]}
+      renderContent={renderInnerDetails}
+      renderHeader={renderInnerHeader}
+    />
+  );
 }
 export const styles = StyleSheet.create({
   panelInner: {
