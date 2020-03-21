@@ -1,6 +1,5 @@
-# WirVsVirus ID: 0348 0008
-
-https://airtable.com/shrs71ccUVKyvLlUA/tbl6Br4W3IyPGk1jt/viw7AlEju6qFtXJqL?blocks=hide
+#  Pandoa WirVsVirus
+[WirVsVirus ID: 0348 0008](thttps://airtable.com/shrs71ccUVKyvLlUA/tbl6Br4W3IyPGk1jt/viw7AlEju6qFtXJqL?blocks=hide)
 
 ![Infection chain tracker](https://raw.githubusercontent.com/wirewirewirewire/pandoa/master/assets/images/infection-chain-tracker.png)
 
@@ -30,15 +29,15 @@ No tracking data will be shared unless you want to share the because you've got 
 
 ### How it works
 
-The app tracks your phones movement and saves it on the device.
-The app downloads anonymous position data of infected patients (from the area you have been) and compares them with your movements.
-This can cause an alarm like: `You've attended Event XYZ! A person that is now infected with COVID-19 was at the same place and you had contact for 30 min`
+- The app tracks your phones movement and saves it on the device (no login or upload).
+- The app downloads anonymous position data of infected patients (from the area you have been) and compares them with your movements.
+- This can cause an alarm like: `You've attended Event XYZ! A person that is now infected with COVID-19 was at the same place and you had contact for 30 min`
 
 If you got infected you can anonymously share your positions of the last 1-2 weeks.
 
 ### The tech behind
 
-[Infection chain tracker](https://raw.githubusercontent.com/wirewirewirewire/pandoa/master/assets/images/how-it-works.png =350x)
+![Infection chain tracker](https://raw.githubusercontent.com/wirewirewirewire/pandoa/master/assets/images/how-it-works.png)
 
 - **Blue lines** This is your own movement
 - **Small black dots** These are the positions of infected patients
@@ -56,6 +55,10 @@ npm install -g expo-cli
 npm install
 npm start
 ```
+
+### Backend
+The backend is node.js (express) with a mondoDB (mongoose).
+https://github.com/wirewirewirewire/pandoa-backend
 
 ### Roadmap
 
