@@ -38,7 +38,7 @@ function HomeScreen(props) {
         contentContainerStyle={styles.contentContainer}
       >
         <WarningList navigation={navigation} />
-        <WarningGenerator navigation={navigation} />
+        {/*<WarningGenerator navigation={navigation} />*/}
 
         <View style={styles.getStartedContainer}>
           <Text>

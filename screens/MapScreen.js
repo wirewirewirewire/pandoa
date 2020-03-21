@@ -3,11 +3,11 @@ import { StyleSheet, View, Dimensions } from "react-native";
 import { connect } from "react-redux";
 import Animated from "react-native-reanimated";
 import MapHistory from "../components/MapHistory";
-import BottomSheetDetails from "../components/BottomSheetDetails";
-import BottomSheetSingle from "../components/BottomSheetSingle";
+
 import PaddedMapView from "../components/PaddedMapView";
 import TrackHistory from "../components/TrackHistory";
 import { getDetail } from "../selectors";
+import BottomSheets from "../components/BottomSheets";
 
 const Screen = {
   width: Dimensions.get("window").width,
@@ -17,8 +17,6 @@ const Screen = {
 class MapScreen extends Component {
   constructor(props) {
     super(props);
-    this.bottomSheetRef = React.createRef();
-    this.bottomSheetInnerRef = React.createRef();
     this._deltaY = new Animated.Value(Screen.height - 100);
   }
 
@@ -44,28 +42,10 @@ class MapScreen extends Component {
     }, 200);
   };
 
-  UNSAFE_componentWillUpdate(prevProps) {
-    if (this.props.detail) {
-      this.bottomSheetRef.current.snapTo(0);
-      this.bottomSheetInnerRef.current.snapTo(2);
-    } else {
-      this.bottomSheetRef.current.snapTo(1);
-      this.bottomSheetInnerRef.current.snapTo(0);
-    }
-  }
-
   render() {
-    const { detail } = this.props;
     return (
       <View style={styles.container}>
-        <BottomSheetDetails
-          bottomSheetRef={this.bottomSheetRef}
-          navigation={this.props.navigation}
-        />
-        <BottomSheetSingle
-          bottomSheetRef={this.bottomSheetInnerRef}
-          navigation={this.props.navigation}
-        />
+        <BottomSheets />
         <PaddedMapView
           style={{ flex: 1 }}
           initialRegion={{

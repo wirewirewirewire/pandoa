@@ -9,7 +9,6 @@ const initialState = [];
 export default function todos(state = initialState, action) {
   switch (action.type) {
     case API_CALL_INFECTIONS_REQUEST:
-      console.log("request started");
       return state; //{ ...state, fetching: true, error: null };
     case API_CALL_INFECTIONS_SUCCESS:
       return [...action.data];

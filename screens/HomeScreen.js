@@ -24,18 +24,6 @@ const Stack = createStackNavigator();
 function HomeScreen(props) {
   const { clearAllTrigger } = props;
 
-  /*
-  var a = 1;
-  var b = 2;
-  var c = 1;
-  var i;
-  for (i = 0; i < 100000000; i++) {
-    c = a + b + c;
-  }
-  console.log("ccccc", c);
-  */
-
-  console.log("props", clearAllTrigger);
   return (
     <View style={styles.container}>
       <Stack.Navigator initialRouteName="Home">

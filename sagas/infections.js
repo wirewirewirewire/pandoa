@@ -10,15 +10,12 @@ import {
 const { apiUrl, axiosConfig } = getEnvVars();
 
 function* watcherSaga() {
-  console.log("watchaaaaa");
   yield takeEvery(API_CALL_INFECTIONS_REQUEST, workerSaga);
 }
 
 function fetchSaga(schoolId) {
-  console.log("watchaaaaa");
   const url = `${apiUrl}download`;
 
-  console.log(url);
   return axios({
     method: "GET",
     url: url,
@@ -29,7 +26,7 @@ function fetchSaga(schoolId) {
 function* workerSaga(schoolId) {
   try {
     const response = yield call(fetchSaga, schoolId);
-    console.log("response", response.data.data);
+
     const data = response.data.data;
 
     yield put({ type: API_CALL_INFECTIONS_SUCCESS, data });

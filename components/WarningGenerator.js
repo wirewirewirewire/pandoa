@@ -13,7 +13,6 @@ function WarningGenerator({ navigation, positions, tracks }) {
   positions.map((position, i) => {
     var combination = [];
     tracks.filter((track, i) => {
-      //console.log(track.lat, position.lat);
       const distance = latLngDistance(
         track.lat,
         track.lng,
@@ -50,7 +49,6 @@ function WarningGenerator({ navigation, positions, tracks }) {
     }
   });
 
-  console.log(aggregatedResults);
   return null;
   const resultList = aggregatedResults.map((e, i) => {
     e.sort((a, b) => {

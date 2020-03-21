@@ -6,24 +6,22 @@ import BottomSheet from "reanimated-bottom-sheet";
 import { Button, Icon, StyleProvider, Text } from "native-base";
 import variable from "../../native-base-theme/variables/platform";
 import WarningList from "../WarningList";
-import { connect } from "react-redux";
-import { getAllWarnings, getDetail } from "../../selectors";
-import { setDetail } from "../../actions";
 
-class BottomSheetSingle extends Component {
+class BottomSheetDetails extends Component {
   render() {
     const {
-      currentDeviceLastGpsStores,
       bottomSheetRef,
       contentPosition,
-      detail,
-      setDetailTrigger,
+      setDetail,
       navigation
     } = this.props;
 
     const renderInnerDetails = () => {
-      console.log("currentDeviceLastGpsStores", currentDeviceLastGpsStores);
-      return <View style={styles.panelInner}></View>;
+      return (
+        <View style={styles.panelInner}>
+          <WarningList navigation={navigation} />
+        </View>
+      );
     };
     const renderInnerHeader = () => {
       return (
@@ -31,10 +29,7 @@ class BottomSheetSingle extends Component {
           <View style={styles.panelHeader}>
             <View style={styles.panelHandle} />
           </View>
-          <Button onPress={() => setDetailTrigger(false)}>
-            <Text>Close</Text>
-          </Button>
-          <Text style={styles.panelTitle}>Detail</Text>
+          <Text style={styles.panelTitle}>History</Text>
         </View>
       );
     };
@@ -44,6 +39,7 @@ class BottomSheetSingle extends Component {
         ref={bottomSheetRef}
         contentPosition={contentPosition}
         snapPoints={[60, 238, 600]}
+        initialSnap={2}
         renderContent={renderInnerDetails}
         renderHeader={renderInnerHeader}
       />
@@ -100,15 +96,4 @@ export const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = state => {
-  return {
-    detail: getDetail(state),
-    warnings: getAllWarnings(state)
-  };
-};
-
-const mapDispatchToProps = dispatch => ({
-  setDetailTrigger: id => dispatch(setDetail(id))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(BottomSheetSingle);
+export default BottomSheetDetails;
