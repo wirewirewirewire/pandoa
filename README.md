@@ -12,11 +12,12 @@ Slack: #pandoa_coronaviruscarriertracker
 
 Would be great if you could help!
 
-- **Backend** (currently we use node.js with mongodb) [Daniel Böber](https://github.com/smarthomeagentur)
-- **Frontend** (react native (expo)) [Robert Gühne](https://github.com/Utzel-Butzel)
-- **Testing** (giving feedback on bugs, testing in real life environments)
-- **Communications & organisation** [Chris Walter]()
-- **Media** (creating communication material, presentations, videos, etc.)
+- **Backend** (currently we use node.js with mongodb) [Daniel Böber](https://github.com/smarthomeagentur), [KaiHawaii](https://github.com/Kaipirinha), [Tim](https://github.com/pr1zm)
+- **Frontend** (react native (expo)) [Robert Gühne](https://github.com/Utzel-Butzel), [KaiHawaii](https://github.com/Kaipirinha)
+- **Testing** (giving feedback on bugs, testing in real life environments) Valentin - Medizin, Machine Learning Modelle, Epidemiologie
+- **Evaluation** (machine learning and data analytics) [Sören][(https://github.com/soerili)
+- **Communications & organisation** [Chris Walter]() Hans (rooom)
+- **Media** (creating communication material, presentations, videos, etc.) Soprathna
 - **CI/CD, Devops** (currently we use AWS EC2 and cloudfront)
 
 ### Corona Tracker
