@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import MapView, { Marker, Polyline } from "react-native-maps";
+import MapView, { Circle, Marker, Polyline } from "react-native-maps";
 import { StyleSheet, View } from "react-native";
 import { getAllPositions, getAllTracks, getAllWarnings } from "../../selectors";
 import Colors from "../../constants/Colors";
@@ -54,8 +54,21 @@ const MapHistory = ({ positions, tracks, warnings }) => {
     }
   });
 
-  //   strokeColor="rgba(255,0,0,0.1)" // fallback for when `strokeColors` is not supported by the map-provider
-  //strokeColors={["rgba(255,0,0,0.1)", "rgba(255,168,12,0.1)"]}
+  const circle = positions.map((point, index) => {
+    const coordinates = {
+      longitude: point.lng,
+      latitude: point.lat
+    };
+    return (
+      <Circle
+        key={index}
+        strokeColor={commonColor.brandPrimary}
+        center={coordinates}
+        fillColor={commonColor.brandPrimary}
+        radius={Platform.OS === "ios" ? 0.3 : 0.1}
+      />
+    );
+  });
 
   const connectedLines = connectedPoints.map((point, index) => {
     if (point.matches && point.matches.length >= 1) {
@@ -119,6 +132,7 @@ const MapHistory = ({ positions, tracks, warnings }) => {
         strokeWidth={2}
         strokeColor="rgba(0,122,255,0.7)"
       />
+      {circle}
       {connectedLines}
       {points}
     </React.Fragment>
@@ -135,11 +149,9 @@ const mapStateToProps = state => {
 
 const styles = StyleSheet.create({
   historyCircle: {
-    width: Platform.OS === "ios" ? 15 : 10,
-    height: Platform.OS === "ios" ? 15 : 10,
-    borderColor: "white",
-    borderWidth: 1,
-    borderRadius: 50
+    width: 10,
+    height: 10,
+    backgroundColor: commonColor.brandPrimary
   },
   matchCircle: {
     width: Platform.OS === "ios" ? 40 : 30,

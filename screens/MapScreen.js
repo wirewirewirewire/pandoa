@@ -3,11 +3,11 @@ import { StyleSheet, View, Dimensions } from "react-native";
 import { connect } from "react-redux";
 import Animated from "react-native-reanimated";
 import MapHistory from "../components/MapHistory";
-
+import BottomSheetDetails from "../components/BottomSheetDetails";
+import BottomSheetSingle from "../components/BottomSheetSingle";
 import PaddedMapView from "../components/PaddedMapView";
 import TrackHistory from "../components/TrackHistory";
 import { getDetail } from "../selectors";
-import BottomSheets from "../components/BottomSheets";
 
 const Screen = {
   width: Dimensions.get("window").width,
@@ -43,9 +43,14 @@ class MapScreen extends Component {
   };
 
   render() {
+    const { detail } = this.props;
     return (
       <View style={styles.container}>
-        <BottomSheets />
+        <BottomSheetDetails
+          detail={detail}
+          navigation={this.props.navigation}
+        />
+        <BottomSheetSingle detail={detail} navigation={this.props.navigation} />
         <PaddedMapView
           style={{ flex: 1 }}
           initialRegion={{

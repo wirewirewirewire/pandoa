@@ -4,9 +4,10 @@ import { LOCATION_TRACKING } from "../constants/Tracking";
 const startLocationTracking = async () => {
   await Location.startLocationUpdatesAsync(LOCATION_TRACKING, {
     accuracy: Location.Accuracy.Highest,
-    timeInterval: 1000 * 10,
-    distanceInterval: 90
+    timeInterval: 1000 * 20,
+    distanceInterval: 0
   });
+
   const hasStarted = await Location.hasStartedLocationUpdatesAsync(
     LOCATION_TRACKING
   );

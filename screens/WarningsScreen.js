@@ -12,7 +12,8 @@ import {
   countPositions,
   countWarnings,
   getAllPositions,
-  getAllTracks
+  getAllTracks,
+  countFilteredWarnings
 } from "../selectors";
 import stopLocationTracking from "../helpers/stopLocationTracking";
 
@@ -23,6 +24,7 @@ function HomeScreen(props) {
     clearAllTrigger,
     downloadInfectionsTrigger,
     generateWarningsTrigger,
+    filteredWarningsCount,
     positions,
     tracks,
     positionsCount,
@@ -37,7 +39,7 @@ function HomeScreen(props) {
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
       >
-        <WarningList navigation={navigation} />
+        {/*<WarningList navigation={navigation} />*/}
         {/*<WarningGenerator navigation={navigation} />*/}
 
         <View style={styles.getStartedContainer}>
@@ -62,7 +64,7 @@ function HomeScreen(props) {
             onPress={e => downloadInfectionsTrigger()}
           />
           <Button
-            title={`Generate warnings: ${warningsCount}`}
+            title={`Generate warnings: ${filteredWarningsCount}/${warningsCount}`}
             onPress={e => generateWarningsTrigger({ positions, tracks })}
           />
           <Button title="reset" onPress={e => clearAllTrigger()} />
@@ -170,6 +172,7 @@ const mapStateToProps = state => {
     tracksCount: countTracks(state),
     positionsCount: countPositions(state),
     warningsCount: countWarnings(state),
+    filteredWarningsCount: countFilteredWarnings(state),
     positions: getAllPositions(state),
     tracks: getAllTracks(state)
   };
