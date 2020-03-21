@@ -29,9 +29,9 @@ No tracking data will be shared unless you want to share the because you've got 
 
 ### How it works
 
-The app tracks your phones movement and saves it on the device.
-The app downloads anonymous position data of infected patients (from the area you have been) and compares them with your movements.
-This can cause an alarm like: `You've attended Event XYZ! A person that is now infected with COVID-19 was at the same place and you had contact for 30 min`
+- The app tracks your phones movement and saves it on the device (no login or upload).
+- The app downloads anonymous position data of infected patients (from the area you have been) and compares them with your movements.
+- This can cause an alarm like: `You've attended Event XYZ! A person that is now infected with COVID-19 was at the same place and you had contact for 30 min`
 
 If you got infected you can anonymously share your positions of the last 1-2 weeks.
 
