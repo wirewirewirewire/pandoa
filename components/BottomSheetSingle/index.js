@@ -5,8 +5,13 @@ import BottomSheet from "reanimated-bottom-sheet";
 import { List, ListItem, Text } from "native-base";
 import variable from "../../native-base-theme/variables/platform";
 import { connect } from "react-redux";
-import { getAllWarnings, getDetail, getWarning } from "../../selectors";
-import { setDetail } from "../../actions";
+import {
+  getAllWarnings,
+  getDetail,
+  getWarning,
+  getCase
+} from "../../selectors";
+import { setDetail, downloadCase } from "../../actions";
 
 const options = {
   weekday: "short",
@@ -25,8 +30,17 @@ class BottomSheetSingle extends Component {
 
   //TODO: improve implementation
   UNSAFE_componentWillReceiveProps(nextProps) {
+    const { warning } = nextProps;
     if (nextProps.detail !== false) {
       setTimeout(() => {
+        console.log("haswarning", warning);
+        if (warning && warning.matches) {
+          nextProps.downloadCaseTrigger({
+            lat: warning.matches[0].lat,
+            lng: warning.matches[0].lng,
+            time: warning.matches[0].time
+          });
+        }
         this.bottomSheetRef.current.snapTo(1);
       }, 200);
     } else {
@@ -37,7 +51,7 @@ class BottomSheetSingle extends Component {
   }
 
   render() {
-    const { contentPosition, setDetailTrigger, warning } = this.props;
+    const { caseEl, contentPosition, setDetailTrigger, warning } = this.props;
 
     /*
        <List>
@@ -66,17 +80,25 @@ class BottomSheetSingle extends Component {
     const renderInnerDetails = () => {
       return (
         <View style={styles.panelInner}>
-          <Text>Contact for {Math.round(warning.duration / 1000 / 60)}min</Text>
-          <List>
-            {warning.matches.map((e, i) => (
-              <ListItem key={i}>
-                <Text>
-                  {new Date(e.time).toLocaleDateString("de-DE", options)}
-                </Text>
-              </ListItem>
-            ))}
-          </List>
-          <Text>{JSON.stringify(warning)}</Text>
+          {warning && (
+            <>
+              <Text>
+                Contact for {Math.round(warning.duration / 1000 / 60)}min
+              </Text>
+              <List>
+                {warning.matches.map((e, i) => (
+                  <ListItem key={i}>
+                    <Text>
+                      {new Date(e.time).toLocaleDateString("de-DE", options)}
+                    </Text>
+                  </ListItem>
+                ))}
+              </List>
+              <Text>{JSON.stringify(warning)}</Text>
+              <Text>CASE</Text>
+              <Text>{JSON.stringify(caseEl)}</Text>
+            </>
+          )}
         </View>
       );
     };
@@ -178,11 +200,13 @@ export const styles = StyleSheet.create({
 const mapStateToProps = state => {
   return {
     detail: getDetail(state),
+    caseEl: getCase(state),
     warning: getWarning(state)
   };
 };
 
 const mapDispatchToProps = dispatch => ({
+  downloadCaseTrigger: data => dispatch(downloadCase(data)),
   setDetailTrigger: id => dispatch(setDetail(id))
 });
 

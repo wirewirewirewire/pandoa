@@ -20,6 +20,14 @@ export const downloadInfections = () => ({
   type: types.API_CALL_INFECTIONS_REQUEST
 });
 
+export const downloadCase = data => {
+  console.log("dddddddddd", data);
+  return {
+    type: types.API_CALL_CASE_REQUEST,
+    data
+  };
+};
+
 export const reportCase = data => ({
   type: types.API_CALL_REPORT_REQUEST,
   data
