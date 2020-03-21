@@ -24,7 +24,7 @@ function WarningList({ navigation, setDetailTrigger, warnings }) {
         <ListItem key={i}>
           <Body>
             <Text>{e.title}</Text>
-            <Text note numberOfLines={2} style={styles.date}>
+            <Text numberOfLines={2} style={styles.date}>
               {new Date(e.position.time).toLocaleDateString("de-DE", options)}
             </Text>
             <Text note numberOfLines={2}>
