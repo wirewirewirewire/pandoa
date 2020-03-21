@@ -1,4 +1,4 @@
-# WirVsVirus ID: 0348 0008
+#  Pandoa (WirVsVirus ID: 0348 0008)
 
 https://airtable.com/shrs71ccUVKyvLlUA/tbl6Br4W3IyPGk1jt/viw7AlEju6qFtXJqL?blocks=hide
 
@@ -52,6 +52,10 @@ npm install -g expo-cli
 npm install
 npm start
 ```
+
+### Backend
+The backend is node.js (express) with a mondoDB (mongoose).
+https://github.com/wirewirewirewire/pandoa-backend
 
 ### Roadmap
 
