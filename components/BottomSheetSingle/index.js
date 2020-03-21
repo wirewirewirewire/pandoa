@@ -5,13 +5,9 @@ import BottomSheet from "reanimated-bottom-sheet";
 import { Body, List, ListItem, Text } from "native-base";
 import variable from "../../native-base-theme/variables/platform";
 import { connect } from "react-redux";
-import {
-  getAllWarnings,
-  getDetail,
-  getWarning,
-  getCase
-} from "../../selectors";
+import { getDetail, getWarning, getCase } from "../../selectors";
 import { setDetail, downloadCase } from "../../actions";
+import { Ionicons } from "@expo/vector-icons";
 
 const options = {
   weekday: "short",
@@ -30,10 +26,7 @@ function BottomSheetSingle({
   setDetailTrigger,
   warning
 }) {
-  const [detailState, setDetail] = useState(detail);
   const bottomSheetRef = useRef();
-
-  console.log("bottomSheetRef", detailState, detail);
 
   useEffect(() => {
     console.log("detail updated", detail);
@@ -49,71 +42,26 @@ function BottomSheetSingle({
       }
       snap = 1;
     }
-    //setTimeout(() => {
     bottomSheetRef.current.snapTo(snap);
-    //}, 200);
   }, [detail]);
-
-  /*if (detailState !== detail) {
-    setDetail(detail);
-    console.log("bottomSheetRef", bottomSheetRef);
-
-    if (detail !== false) {
-      setTimeout(() => {
-        console.log("haswarning", warning);
-        if (warning && warning.matches) {
-          downloadCaseTrigger({
-            lat: warning.matches[0].lat,
-            lng: warning.matches[0].lng,
-            time: warning.matches[0].time
-          });
-        }
-        bottomSheetRef.current.snapTo(1);
-      }, 200);
-    } else {
-      setTimeout(() => {
-        bottomSheetRef.current.snapTo(0);
-      }, 200);
-    }
-  }*/
-
-  //TODO: improve implementation
-  /*UNSAFE_componentWillReceiveProps(nextProps) {
-    const { warning } = nextProps;
-    if (nextProps.detail !== false) {
-      setTimeout(() => {
-        console.log("haswarning", warning);
-        if (warning && warning.matches) {
-          nextProps.downloadCaseTrigger({
-            lat: warning.matches[0].lat,
-            lng: warning.matches[0].lng,
-            time: warning.matches[0].time
-          });
-        }
-        this.bottomSheetRef.current.snapTo(1);
-      }, 200);
-    } else {
-      setTimeout(() => {
-        this.bottomSheetRef.current.snapTo(0);
-      }, 200);
-    }
-  }
-*/
 
   const renderInnerDetails = () => {
     return (
       <View style={styles.panelInner}>
         {warning && (
           <>
-            <Text>
-              Contact for {Math.round(warning.duration / 1000 / 60)}min
-            </Text>
             <List>
+              <ListItem itemDivider>
+                <Text>Connected to the points</Text>
+              </ListItem>
               {warning.matches.map((e, i) => (
                 <ListItem key={i}>
                   <Body>
                     <Text>
                       {new Date(e.time).toLocaleDateString("de-DE", options)}
+                    </Text>
+                    <Text>
+                      {e.lat}, {e.lng}
                     </Text>
                   </Body>
                 </ListItem>
@@ -135,14 +83,23 @@ function BottomSheetSingle({
         </View>
 
         <View style={styles.close}>
-          <Text style={styles.panelTitle}>Detail</Text>
+          <Text style={styles.panelTitle}>
+            {warning &&
+              new Date(warning.position.time).toLocaleDateString(
+                "de-DE",
+                options
+              )}
+          </Text>
+          <Text style={styles.panelSubTitle}>
+            Contact for {warning && Math.round(warning.duration / 1000 / 60)}min
+          </Text>
           <TouchableOpacity
             roundeds
             light
             onPress={() => setDetailTrigger(false)}
             style={styles.panelClose}
           >
-            <Text>x</Text>
+            <Ionicons name="md-close" size={23} color="#000" />
           </TouchableOpacity>
         </View>
       </View>
@@ -170,9 +127,9 @@ export const styles = StyleSheet.create({
     position: "relative",
     backgroundColor: "#ffffff",
     paddingTop: 10,
-    height: 60,
-    borderBottomWidth: 1,
-    borderBottomColor: "#DFE3E6",
+    height: 80,
+    //borderBottomWidth: 1,
+    //borderBottomColor: "#DFE3E6",
     paddingLeft: 20,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
@@ -197,15 +154,16 @@ export const styles = StyleSheet.create({
     marginBottom: 3
   },
   panelTitle: {
-    fontSize: 22,
+    fontSize: 19,
     height: 35,
+    marginTop: 6,
     fontWeight: "bold"
   },
-  panelSubtitle: {
+  panelSubTitle: {
     fontSize: 14,
     color: "gray",
     height: 30,
-    marginBottom: 10
+    marginTop: -10
   },
   panelClose: {
     position: "absolute",
