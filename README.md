@@ -46,6 +46,10 @@ If you got infected you can anonymously share your positions of the last 1-2 wee
 
 ### How to use
 
+The application uses [Expo.io](https://expo.io/) for development. Make sure you have Expo and Android Studio or Xcode installed.
+
+[How to use the emulator](https://docs.expo.io/versions/latest/workflow/android-studio-emulator/)
+
 ```
 // Install the expo cli
 npm install -g expo-cli
