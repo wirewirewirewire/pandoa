@@ -37,7 +37,7 @@ If you got infected you can anonymously share your positions of the last 1-2 wee
 
 ### The tech behind
 
-[Infection chain tracker](https://raw.githubusercontent.com/wirewirewirewire/pandoa/master/assets/images/how-it-works.png)
+![Infection chain tracker](https://raw.githubusercontent.com/wirewirewirewire/pandoa/master/assets/images/how-it-works.png =350px)
 
 - **Blue lines** This is your own movement
 - **Small black dots** These are the positions of infected patients
