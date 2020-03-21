@@ -1,19 +1,8 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Image,
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
-} from "react-native";
-import { AsyncStorage } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import * as WebBrowser from "expo-web-browser";
-import { connect } from "react-redux";
+import { Button, Image, Platform, StyleSheet, Text, View } from "react-native";
 
-import { MonoText } from "../components/StyledText";
+import { ScrollView } from "react-native-gesture-handler";
+import { connect } from "react-redux";
 import startLocationTracking from "../helpers/startLocationTracking";
 import { clearAll, downloadInfections, generateWarnings } from "../actions";
 import WarningList from "../components/WarningList";
@@ -21,6 +10,7 @@ import WarningGenerator from "../components/WarningGenerator";
 import {
   countTracks,
   countPositions,
+  countWarnings,
   getAllPositions,
   getAllTracks
 } from "../selectors";
@@ -37,10 +27,10 @@ function HomeScreen(props) {
     tracks,
     positionsCount,
     tracksCount,
+    warningsCount,
     navigation
   } = props;
 
-  console.log("trackingStatus", trackingStatus);
   return (
     <View style={styles.container}>
       <ScrollView
@@ -68,11 +58,11 @@ function HomeScreen(props) {
           />
 
           <Button
-            title={`Get data from server current: (${tracksCount})`}
+            title={`Get data from server current: ${tracksCount}`}
             onPress={e => downloadInfectionsTrigger()}
           />
           <Button
-            title={`Generate warningss`}
+            title={`Generate warnings: ${warningsCount}`}
             onPress={e => generateWarningsTrigger({ positions, tracks })}
           />
           <Button title="reset" onPress={e => clearAllTrigger()} />
@@ -85,41 +75,6 @@ function HomeScreen(props) {
 HomeScreen.navigationOptions = {
   header: null
 };
-
-function DevelopmentModeNotice() {
-  if (__DEV__) {
-    const learnMoreButton = (
-      <Text onPress={handleLearnMorePress} style={styles.helpLinkText}>
-        Learn more
-      </Text>
-    );
-
-    return (
-      <Text style={styles.developmentModeText}>
-        Development mode is enabled: your app will be slower but you can use
-        useful development tools. {learnMoreButton}
-      </Text>
-    );
-  } else {
-    return (
-      <Text style={styles.developmentModeText}>
-        You are not in development mode: your app will run at full speed.
-      </Text>
-    );
-  }
-}
-
-function handleLearnMorePress() {
-  WebBrowser.openBrowserAsync(
-    "https://docs.expo.io/versions/latest/workflow/development-mode/"
-  );
-}
-
-function handleHelpPress() {
-  WebBrowser.openBrowserAsync(
-    "https://docs.expo.io/versions/latest/get-started/create-a-new-app/#making-your-first-change"
-  );
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -214,6 +169,7 @@ const mapStateToProps = state => {
   return {
     tracksCount: countTracks(state),
     positionsCount: countPositions(state),
+    warningsCount: countWarnings(state),
     positions: getAllPositions(state),
     tracks: getAllTracks(state)
   };

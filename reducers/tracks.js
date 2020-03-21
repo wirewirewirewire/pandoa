@@ -8,13 +8,7 @@ import {
   CLEAR_COMPLETED
 } from "../constants/ActionTypes";
 
-const initialState = [
-  {
-    time: "2020-03-17T21:32:26.345Z",
-    lat: "37.3304394",
-    lng: "-122.029858"
-  }
-];
+const initialState = [];
 
 export default function todos(state = initialState, action) {
   switch (action.type) {

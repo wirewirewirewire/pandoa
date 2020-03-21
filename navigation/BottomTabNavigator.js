@@ -6,7 +6,7 @@ import ReportScreen from "../screens/ReportScreen";
 import MapScreen from "../screens/MapScreen";
 
 const BottomTab = createBottomTabNavigator();
-const INITIAL_ROUTE_NAME = "Home";
+const INITIAL_ROUTE_NAME = "Warnings";
 
 export default function BottomTabNavigator({ navigation, route }) {
   // Set the header title on the parent stack navigator depending on the
@@ -24,20 +24,10 @@ export default function BottomTabNavigator({ navigation, route }) {
       headerMode="none"
     >
       <BottomTab.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{
-          title: "Warnings",
-          tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-warning" />
-          )
-        }}
-      />
-      <BottomTab.Screen
-        name="History"
+        name="Warnings"
         component={MapScreen}
         options={{
-          title: "History",
+          title: "Warnings",
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="md-map" />
           )
@@ -50,6 +40,16 @@ export default function BottomTabNavigator({ navigation, route }) {
           title: "Report case",
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="md-umbrella" />
+          )
+        }}
+      />
+      <BottomTab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          title: "Debug",
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name="md-warning" />
           )
         }}
       />

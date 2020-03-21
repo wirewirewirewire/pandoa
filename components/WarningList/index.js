@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import { Body, Button, Right, List, ListItem, Text } from "native-base";
+import { setDetail } from "../../actions";
 import { getAllWarnings } from "../../selectors";
 
 const options = {
@@ -13,7 +14,7 @@ const options = {
   minute: "numeric"
 };
 
-function WarningList({ navigation, warnings }) {
+function WarningList({ navigation, setDetailTrigger, warnings }) {
   const filteredWarnings = warnings.filter(
     e => e.matches && e.matches.length >= 1
   );
@@ -33,10 +34,7 @@ function WarningList({ navigation, warnings }) {
             </Text>
           </Body>
           <Right>
-            <Button
-              transparent
-              onPress={() => navigation.push("WarningDetail")}
-            >
+            <Button transparent onPress={() => setDetailTrigger(i)}>
               <Text>Details</Text>
             </Button>
           </Right>
@@ -59,4 +57,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(WarningList);
+const mapDispatchToProps = dispatch => ({
+  setDetailTrigger: id => dispatch(setDetail(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(WarningList);

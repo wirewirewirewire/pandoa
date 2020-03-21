@@ -6,22 +6,24 @@ import BottomSheet from "reanimated-bottom-sheet";
 import { Button, Icon, StyleProvider, Text } from "native-base";
 import variable from "../../native-base-theme/variables/platform";
 import WarningList from "../WarningList";
+import { connect } from "react-redux";
+import { getAllWarnings, getDetail } from "../../selectors";
+import { setDetail } from "../../actions";
 
-class BottomSheetDetails extends Component {
+class BottomSheetSingle extends Component {
   render() {
     const {
+      currentDeviceLastGpsStores,
       bottomSheetRef,
       contentPosition,
-      setDetail,
+      detail,
+      setDetailTrigger,
       navigation
     } = this.props;
 
     const renderInnerDetails = () => {
-      return (
-        <View style={styles.panelInner}>
-          <WarningList navigation={navigation} />
-        </View>
-      );
+      console.log("currentDeviceLastGpsStores", currentDeviceLastGpsStores);
+      return <View style={styles.panelInner}></View>;
     };
     const renderInnerHeader = () => {
       return (
@@ -29,7 +31,10 @@ class BottomSheetDetails extends Component {
           <View style={styles.panelHeader}>
             <View style={styles.panelHandle} />
           </View>
-          <Text style={styles.panelTitle}>History</Text>
+          <Button onPress={() => setDetailTrigger(false)}>
+            <Text>Close</Text>
+          </Button>
+          <Text style={styles.panelTitle}>Detail</Text>
         </View>
       );
     };
@@ -95,4 +100,15 @@ export const styles = StyleSheet.create({
   }
 });
 
-export default BottomSheetDetails;
+const mapStateToProps = state => {
+  return {
+    detail: getDetail(state),
+    warnings: getAllWarnings(state)
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  setDetailTrigger: id => dispatch(setDetail(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BottomSheetSingle);

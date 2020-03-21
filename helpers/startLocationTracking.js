@@ -4,14 +4,13 @@ import { LOCATION_TRACKING } from "../constants/Tracking";
 const startLocationTracking = async () => {
   await Location.startLocationUpdatesAsync(LOCATION_TRACKING, {
     accuracy: Location.Accuracy.Highest,
-    timeInterval: 1000 * 20,
+    timeInterval: 1000 * 10,
     distanceInterval: 90
   });
   const hasStarted = await Location.hasStartedLocationUpdatesAsync(
     LOCATION_TRACKING
   );
   console.log("tracking started?", hasStarted);
-  return hasStarted;
 };
 
 export default startLocationTracking;

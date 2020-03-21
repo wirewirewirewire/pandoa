@@ -29,3 +29,8 @@ export const generateWarnings = data => ({
   type: types.GENERATE_WARNINGS,
   data
 });
+
+export const setDetail = id => ({
+  type: types.SET_DETAIL,
+  id
+});
