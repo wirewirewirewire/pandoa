@@ -111,6 +111,9 @@ function BottomSheetSingle({
       ref={bottomSheetRef}
       contentPosition={contentPosition}
       snapPoints={[0, 238, 600]}
+      onCloseEnd={() => {
+        setDetailTrigger(false);
+      }}
       renderContent={renderInnerDetails}
       renderHeader={renderInnerHeader}
     />

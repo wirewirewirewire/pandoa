@@ -38,6 +38,7 @@
       "bundleIdentifier": "com.polyxo.pando",
       "supportsTablet": true,
       "infoPlist": {
+        "UIUserInterfaceStyle": "Light",
         "UIBackgroundModes": ["location", "fetch"]
       }
     },
