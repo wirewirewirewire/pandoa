@@ -12,8 +12,8 @@ Slack: #pandoa_coronaviruscarriertracker
 
 Would be great if you could help!
 
-- **Backend** (currently we use node.js with mongodb) [Daniel Böber](https://github.com/smarthomeagentur), [KaiHawaii](https://github.com/Kaipirinha), [Tim](https://github.com/pr1zm)
 - **Frontend** (react native (expo)) [Robert Gühne](https://github.com/Utzel-Butzel), [KaiHawaii](https://github.com/Kaipirinha)
+- **Backend** (currently we use node.js with mongodb) [Daniel Böber](https://github.com/smarthomeagentur), [KaiHawaii](https://github.com/Kaipirinha)
 - **Testing** (giving feedback on bugs, testing in real life environments) Valentin - Medizin, Machine Learning Modelle, Epidemiologie
 - **Evaluation** (machine learning and data analytics) [Sören](https://github.com/soerili)
 - **Communications & organisation** [Chris Walter]() Hans (rooom)
@@ -96,9 +96,13 @@ https://bs-sd.de/corona/
 https://github.com/rehfeldchris/cmpe272
 https://play.google.com/store/apps/details?id=cat.gencat.mobi.StopCovid19Cat
 https://play.google.com/store/apps/details?id=sg.gov.tech.bluetrace
+https://github.com/tripleblindmarket/private-kit/blob/develop/app/services/LocationService.js
 
 ### Credits
 
 Illustrations
 https://www.vecteezy.com/vector-art/149356-bacterias-and-mold-vector-drawings-doodle
-````
+
+```
+
+```

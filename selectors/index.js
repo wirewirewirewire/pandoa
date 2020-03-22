@@ -14,7 +14,17 @@ export const countPositions = state => state.positions.length;
 export const countWarnings = state => state.warnings.length;
 export const getCase = state => state.caseRed;
 
-export const getWarning = state => state.warnings[state.detail];
+// TODO: Clean up
+export const getWarning = state => {
+  console.log("state", state.warnings, state.detail.position);
+  if (state.detail.position === undefined) return null;
+  return state.warnings.find(e => {
+    return (
+      e.position.lat === state.detail.position.lat &&
+      e.position.lng === state.detail.position.lng
+    );
+  });
+};
 
 export const getAllFilteredWarnings = state => {
   const filteredWarnings = state.warnings.filter(

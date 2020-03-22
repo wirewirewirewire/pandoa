@@ -100,7 +100,7 @@ const MapHistory = ({ positions, setDetailTrigger, warnings }) => {
         key={index}
         anchor={Platform.OS === "ios" ? { x: 0, y: 0 } : { x: 0.53, y: 0.53 }}
         coordinate={coordinates}
-        onCalloutPress={() => setDetailTrigger(index)}
+        onCalloutPress={() => setDetailTrigger(point)}
         title={`${new Date(point.position.time).toLocaleDateString(
           "de-DE",
           options
