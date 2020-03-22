@@ -41,7 +41,7 @@ function WarningList({ navigation, setDetailTrigger, warnings }) {
             ? e.position.geocode[0]
             : {};
         return (
-          <ListItem key={i} onPress={() => setDetailTrigger(i)}>
+          <ListItem key={i} onPress={() => setDetailTrigger(e)}>
             <Body>
               <Text>{e.title}</Text>
               <Text numberOfLines={1} style={styles.date}>
