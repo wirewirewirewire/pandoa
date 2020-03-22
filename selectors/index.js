@@ -12,3 +12,20 @@ export const countTracks = state => state.infections.length;
 
 export const countPositions = state => state.positions.length;
 export const countWarnings = state => state.warnings.length;
+export const getCase = state => state.caseRed;
+
+export const getWarning = state => state.warnings[state.detail];
+
+export const getAllFilteredWarnings = state => {
+  const filteredWarnings = state.warnings.filter(
+    e => e.matches && e.matches.length >= 1
+  );
+  return filteredWarnings;
+};
+
+export const countFilteredWarnings = state => {
+  const filteredWarnings = state.warnings.filter(
+    e => e.matches && e.matches.length >= 1
+  );
+  return filteredWarnings.length;
+};

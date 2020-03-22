@@ -8,13 +8,26 @@ import variable from "../../native-base-theme/variables/platform";
 import WarningList from "../WarningList";
 
 class BottomSheetDetails extends Component {
+  constructor(props) {
+    super(props);
+    this.bottomSheetRef = React.createRef();
+  }
+
+  //TODO: improve implementation
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.detail !== false) {
+      setTimeout(() => {
+        this.bottomSheetRef.current.snapTo(0);
+      }, 200);
+    } else {
+      setTimeout(() => {
+        this.bottomSheetRef.current.snapTo(1);
+      }, 200);
+    }
+  }
+
   render() {
-    const {
-      bottomSheetRef,
-      contentPosition,
-      setDetail,
-      navigation
-    } = this.props;
+    const { contentPosition, setDetail, navigation } = this.props;
 
     const renderInnerDetails = () => {
       return (
@@ -29,17 +42,16 @@ class BottomSheetDetails extends Component {
           <View style={styles.panelHeader}>
             <View style={styles.panelHandle} />
           </View>
-          <Text style={styles.panelTitle}>History</Text>
+          <Text style={styles.panelTitle}>Warnings</Text>
         </View>
       );
     };
 
     return (
       <BottomSheet
-        ref={bottomSheetRef}
+        ref={this.bottomSheetRef}
         contentPosition={contentPosition}
-        snapPoints={[60, 400, 600]}
-        initialSnap={2}
+        snapPoints={[58, 238, 600]}
         renderContent={renderInnerDetails}
         renderHeader={renderInnerHeader}
       />
@@ -50,7 +62,8 @@ export const styles = StyleSheet.create({
   panelInner: {
     position: "relative",
     zIndex: 30,
-    backgroundColor: "#ffffff"
+    backgroundColor: "#ffffff",
+    minHeight: 540
   },
   headerInner: {
     zIndex: -10,

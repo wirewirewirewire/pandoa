@@ -38,12 +38,13 @@
       "bundleIdentifier": "com.polyxo.pando",
       "supportsTablet": true,
       "infoPlist": {
+        "UIUserInterfaceStyle": "Light",
         "UIBackgroundModes": ["location", "fetch"]
       }
     },
     "android": {
       "package": "com.polyxo.pando",
-      "versionCode": 1
+      "versionCode": 2
     }
   }
 }

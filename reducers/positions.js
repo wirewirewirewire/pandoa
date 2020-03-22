@@ -5,14 +5,15 @@ import {
   COMPLETE_TODO,
   CLEAR_ALL,
   COMPLETE_ALL_TODOS,
-  CLEAR_COMPLETED
+  CLEAR_COMPLETED,
+  ADD_LOCATION
 } from "../constants/ActionTypes";
 
 const initialState = [];
 
 export default function todos(state = initialState, action) {
   switch (action.type) {
-    case ADD_TODO:
+    case ADD_LOCATION:
       return [
         ...state,
         {
@@ -20,7 +21,7 @@ export default function todos(state = initialState, action) {
           ...action.data
         }
       ];
-
+    /*
     case DELETE_TODO:
       return state.filter(todo => todo.id !== action.id);
 
@@ -40,7 +41,7 @@ export default function todos(state = initialState, action) {
         ...todo,
         completed: !areAllMarked
       }));
-
+*/
     case CLEAR_ALL:
       return initialState;
 

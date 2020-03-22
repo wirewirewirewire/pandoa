@@ -21,7 +21,7 @@ const Stack = createStackNavigator();
 
 import Store from "./configureStore";
 import startLocationTracking from "./helpers/startLocationTracking";
-import { addTodo } from "./actions";
+import { addLocation } from "./actions";
 import { StyleProvider } from "native-base";
 import getTheme from "./native-base-theme/components";
 import material from "./native-base-theme/variables/commonColor";
@@ -123,8 +123,18 @@ TaskManager.defineTask(LOCATION_TRACKING, async ({ data, error }) => {
       `Location: ${new Date(Date.now()).toISOString()}: ${lat},${lng}`
     );
 
+    let result = await Location.reverseGeocodeAsync({
+      latitude: lat,
+      longitude: lng
+    });
+
     Store().store.dispatch(
-      addTodo({ time: new Date(Date.now()).toISOString(), lat, lng })
+      addLocation({
+        time: new Date(Date.now()).toISOString(),
+        lat,
+        lng,
+        geocode: result
+      })
     );
   }
 });
