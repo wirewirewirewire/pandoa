@@ -123,8 +123,18 @@ TaskManager.defineTask(LOCATION_TRACKING, async ({ data, error }) => {
       `Location: ${new Date(Date.now()).toISOString()}: ${lat},${lng}`
     );
 
+    let result = await Location.reverseGeocodeAsync({
+      latitude: lat,
+      longitude: lng
+    });
+
     Store().store.dispatch(
-      addLocation({ time: new Date(Date.now()).toISOString(), lat, lng })
+      addLocation({
+        time: new Date(Date.now()).toISOString(),
+        lat,
+        lng,
+        geocode: result
+      })
     );
   }
 });

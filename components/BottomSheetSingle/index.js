@@ -170,7 +170,7 @@ export const styles = StyleSheet.create({
   panelClose: {
     position: "absolute",
     right: 12,
-    top: -5,
+    top: -3,
     width: 37,
     height: 37,
     borderRadius: 100,
