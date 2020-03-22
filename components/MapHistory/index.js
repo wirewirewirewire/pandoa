@@ -81,7 +81,7 @@ const MapHistory = ({ positions, setDetailTrigger, warnings }) => {
             { latitude: e.lat, longitude: e.lng }
           ]}
           strokeColor="rgba(255,0,0,0.1)" // fallback for when `strokeColors` is not supported by the map-provider
-          strokeColors={["rgba(255,0,0,0.1)", "rgba(255,168,12,0.1)"]}
+          strokeColors={["rgba(255,0,0,0.5)", "rgba(255,168,12,0.8)"]}
           strokeWidth={15.5}
         />
       ));

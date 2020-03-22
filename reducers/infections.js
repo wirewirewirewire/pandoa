@@ -18,11 +18,12 @@ export default function todos(state = initialState, action) {
     case GENERATE_FAKE_INFECTIONS:
       console.log(action.data);
       const fakeData = [];
-      for (let index = 0; index < 100; index++) {
+      for (let index = 0; index < 300; index++) {
+        const oldDate = new Date(Date.parse(action.data.time));
         fakeData.push({
           lat: action.data.lat + Math.random() * (0.01 - -0.01) + -0.01,
           lng: action.data.lng + +Math.random() * (0.01 - -0.01) + -0.01,
-          time: action.data.time
+          time: new Date(oldDate.getTime() + Math.random() * 6000000)
         });
       }
       console.log("fakedata", fakeData);

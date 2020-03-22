@@ -63,7 +63,7 @@ export const styles = StyleSheet.create({
     position: "relative",
     zIndex: 30,
     backgroundColor: "#ffffff",
-    height: 540
+    minHeight: 540
   },
   headerInner: {
     zIndex: -10,
