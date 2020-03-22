@@ -6,21 +6,21 @@
 
 [DevPost](https://devpost.com/software/08_pandoa-corona-virus-tracker)
 
-Slack: #pandoa_coronaviruscarriertracker
+[Slack](https://wirvsvirus.slack.com/archives/C01064DMNLR)
 
 # How can I contribute?
 
 Would be great if you could help!
 
 - **Backend** (currently we use node.js with mongodb) [Daniel Böber](https://github.com/smarthomeagentur), [KaiHawaii](https://github.com/Kaipirinha), [Tim](https://github.com/pr1zm)
-- **Frontend** (react native (expo)) [Robert Gühne](https://github.com/Utzel-Butzel), [KaiHawaii](https://github.com/Kaipirinha
+- **Frontend** (react native (expo)) [Robert Gühne](https://github.com/Utzel-Butzel), [KaiHawaii](https://github.com/Kaipirinha)
 - **Testing** (giving feedback on bugs, testing in real life environments) Valentin - Medizin, Machine Learning Modelle, Epidemiologie
 - **Evaluation** (machine learning and data analytics) [Sören](https://github.com/soerili)
-- **Communications & organisation** [Chris Walter], [Hans - rooom.com] (https://github.com/Hans-rooom) 
+- **Communications & organisation** Chris Walter, [Hans - rooom.com](https://github.com/Hans-rooom) 
 - **Media** (creating communication material, presentations, videos, etc.) Soprathna
 - **CI/CD, Devops** (currently we use AWS EC2 and cloudfront)
 
-Project Plan (Todos): https://trello.com/b/LlLyGAF3/pandoa
+Project Plan (Todos): [Trello Board](https://trello.com/b/LlLyGAF3/pandoa)
 
 ### Corona Tracker
 
@@ -88,7 +88,7 @@ Webapp
 
 The whole application is **open source**. Do whatever you want with it :)
 
-[GNU/GPL](https://github.com/wirewirewirewire/pandoa/blob/master/LICENSE)
+[GNU/GPLv3](https://github.com/wirewirewirewire/pandoa/blob/master/LICENSE)
 
 ### Similar solutions from the hackathlon
 
@@ -103,4 +103,3 @@ https://play.google.com/store/apps/details?id=sg.gov.tech.bluetrace
 
 Illustrations
 https://www.vecteezy.com/vector-art/149356-bacterias-and-mold-vector-drawings-doodle
-````
