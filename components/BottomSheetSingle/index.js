@@ -45,6 +45,10 @@ function BottomSheetSingle({
   }, [detail]);
 
   const renderInnerDetails = () => {
+    const geocode =
+      warning && warning.position.geocode && warning.position.geocode[0]
+        ? warning.position.geocode[0]
+        : {};
     return (
       <View style={styles.panelInner}>
         {warning && (
@@ -66,6 +70,14 @@ function BottomSheetSingle({
                 </ListItem>
               ))}
             </List>
+
+            {geocode && (
+              <View>
+                <Text>
+                  {geocode.name}, {geocode.postalCode} {geocode.city}
+                </Text>
+              </View>
+            )}
             <Text>{JSON.stringify(warning)}</Text>
             <Text>CASE</Text>
             <Text>{JSON.stringify(caseEl)}</Text>

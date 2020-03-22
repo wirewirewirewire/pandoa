@@ -96,9 +96,13 @@ https://bs-sd.de/corona/
 https://github.com/rehfeldchris/cmpe272
 https://play.google.com/store/apps/details?id=cat.gencat.mobi.StopCovid19Cat
 https://play.google.com/store/apps/details?id=sg.gov.tech.bluetrace
+https://github.com/tripleblindmarket/private-kit/blob/develop/app/services/LocationService.js
 
 ### Credits
 
 Illustrations
 https://www.vecteezy.com/vector-art/149356-bacterias-and-mold-vector-drawings-doodle
-````
+
+```
+
+```

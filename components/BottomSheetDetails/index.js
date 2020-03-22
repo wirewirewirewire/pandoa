@@ -4,8 +4,9 @@ import { StyleSheet, View, Dimensions, TouchableOpacity } from "react-native";
 import BottomSheet from "reanimated-bottom-sheet";
 
 import { Button, Icon, StyleProvider, Text } from "native-base";
-import variable from "../../native-base-theme/variables/platform";
+import { connect } from "react-redux";
 import WarningList from "../WarningList";
+import { countFilteredWarnings } from "../../selectors";
 
 class BottomSheetDetails extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class BottomSheetDetails extends Component {
   }
 
   render() {
-    const { contentPosition, setDetail, navigation } = this.props;
+    const { contentPosition, filteredWarnings, navigation } = this.props;
 
     const renderInnerDetails = () => {
       return (
@@ -42,7 +43,9 @@ class BottomSheetDetails extends Component {
           <View style={styles.panelHeader}>
             <View style={styles.panelHandle} />
           </View>
-          <Text style={styles.panelTitle}>Warnings</Text>
+          <Text style={styles.panelTitle}>
+            {filteredWarnings >= 1 ? filteredWarnings : "No"} Warnings
+          </Text>
         </View>
       );
     };
@@ -109,4 +112,10 @@ export const styles = StyleSheet.create({
   }
 });
 
-export default BottomSheetDetails;
+const mapStateToProps = state => {
+  return {
+    filteredWarnings: countFilteredWarnings(state)
+  };
+};
+
+export default connect(mapStateToProps)(BottomSheetDetails);
