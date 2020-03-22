@@ -69,7 +69,7 @@ npm expo build:ios
 npm expo upload:ios
 ```
 
-````
+```
 npm expo build:android -t apk
 ```
 
