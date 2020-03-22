@@ -52,7 +52,7 @@ If you got infected you can anonymously share your positions of the last 1-2 wee
 - **Red lines** This is when you have been in contact with an infected person (at the same position and the same time)
 
 ### Youtube video
-[!Youtube video](https://i.ytimg.com/vi/8NdGOpGB-WA/maxresdefault.jpg)](https://www.youtube.com/watch?v=8NdGOpGB-WA)
+![Youtube video](https://i.ytimg.com/vi/8NdGOpGB-WA/maxresdefault.jpg)](https://www.youtube.com/watch?v=8NdGOpGB-WA)
 
 ![Screendesigns](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/000/972/815/datas/gallery.jpg)
 
