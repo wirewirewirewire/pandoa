@@ -16,9 +16,11 @@ Would be great if you could help!
 - **Frontend** (react native (expo)) [Robert Gühne](https://github.com/Utzel-Butzel), [KaiHawaii](https://github.com/Kaipirinha)
 - **Testing** (giving feedback on bugs, testing in real life environments) Valentin - Medizin, Machine Learning Modelle, Epidemiologie
 - **Evaluation** (machine learning and data analytics) [Sören](https://github.com/soerili)
-- **Communications & organisation** [Chris Walter]() Hans (rooom)
+- **Communications & organisation** [Chris Walter], [Hans - rooom.com] (https://github.com/Hans-rooom) 
 - **Media** (creating communication material, presentations, videos, etc.) Soprathna
 - **CI/CD, Devops** (currently we use AWS EC2 and cloudfront)
+
+Project Plan (Todos): https://trello.com/b/LlLyGAF3/pandoa
 
 ### Corona Tracker
 
