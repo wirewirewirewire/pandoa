@@ -38,6 +38,21 @@ export const generateWarnings = data => ({
   data
 });
 
+/*
+export const generateFakeInfections = data => {
+  console.log("data", data);
+  return {
+    type: types.GENERATE_FAKE_INFECTIONS,
+    data
+  };
+};
+*/
+
+export const generateFakeInfections = data => ({
+  type: types.GENERATE_FAKE_INFECTIONS,
+  data
+});
+
 export const setDetail = id => ({
   type: types.SET_DETAIL,
   id

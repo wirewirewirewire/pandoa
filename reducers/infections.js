@@ -1,7 +1,8 @@
 import {
   API_CALL_INFECTIONS_REQUEST,
   API_CALL_INFECTIONS_SUCCESS,
-  API_CALL_INFECTIONS_FAILURE
+  API_CALL_INFECTIONS_FAILURE,
+  GENERATE_FAKE_INFECTIONS
 } from "../constants/ActionTypes";
 
 const initialState = [];
@@ -14,6 +15,18 @@ export default function todos(state = initialState, action) {
       return [...action.data];
     case API_CALL_INFECTIONS_FAILURE:
       return [];
+    case GENERATE_FAKE_INFECTIONS:
+      console.log(action.data);
+      const fakeData = [];
+      for (let index = 0; index < 100; index++) {
+        fakeData.push({
+          lat: action.data.lat + Math.random() * (0.01 - -0.01) + -0.01,
+          lng: action.data.lng + +Math.random() * (0.01 - -0.01) + -0.01,
+          time: action.data.time
+        });
+      }
+      console.log("fakedata", fakeData);
+      return fakeData;
     default:
       return state;
   }

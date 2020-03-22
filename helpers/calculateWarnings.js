@@ -1,6 +1,6 @@
 import latLngDistance from "./latLngDistance";
 
-const DISTANCE = 10;
+const DISTANCE = 50;
 const TIME_DIFFERENCE = 1000 * 60 * 60 * 24 * 2;
 const diffCalc = (position, track) => {
   const distance = latLngDistance(

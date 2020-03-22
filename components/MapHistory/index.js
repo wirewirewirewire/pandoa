@@ -6,6 +6,7 @@ import { getAllPositions, getAllTracks, getAllWarnings } from "../../selectors";
 import Colors from "../../constants/Colors";
 import latLngDistance from "../../helpers/latLngDistance";
 import commonColor from "../../native-base-theme/variables/commonColor";
+import { setDetail } from "../../actions";
 
 const diffCalc = (position, track) => {
   const distance = latLngDistance(
@@ -31,7 +32,7 @@ const options = {
   minute: "numeric"
 };
 
-const MapHistory = ({ positions, tracks, warnings }) => {
+const MapHistory = ({ positions, setDetailTrigger, warnings }) => {
   const lines = positions.map(point => {
     return {
       latitude: point.lat ? point.lat : 0,
@@ -98,6 +99,7 @@ const MapHistory = ({ positions, tracks, warnings }) => {
         key={index}
         anchor={Platform.OS === "ios" ? { x: 0, y: 0 } : { x: 0.53, y: 0.53 }}
         coordinate={coordinates}
+        onCalloutPress={() => setDetailTrigger(index)}
         title={`${new Date(point.position.time).toLocaleDateString(
           "de-DE",
           options
@@ -147,10 +149,15 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = dispatch => ({
+  setDetailTrigger: id => dispatch(setDetail(id))
+});
+
 const styles = StyleSheet.create({
   historyCircle: {
     width: 10,
     height: 10,
+    borderRadius: 50,
     backgroundColor: commonColor.brandPrimary
   },
   matchCircle: {
@@ -179,4 +186,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(mapStateToProps)(MapHistory);
+export default connect(mapStateToProps, mapDispatchToProps)(MapHistory);

@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
-import { StyleSheet, View, Dimensions, TouchableOpacity } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import BottomSheet from "reanimated-bottom-sheet";
 import { Body, List, ListItem, Text } from "native-base";
 import variable from "../../native-base-theme/variables/platform";
@@ -29,11 +29,9 @@ function BottomSheetSingle({
   const bottomSheetRef = useRef();
 
   useEffect(() => {
-    console.log("detail updated", detail);
     let snap = 0;
     if (detail !== false) {
-      console.log("haswarning", warning);
-      if (warning && warning.matches) {
+      if (warning && warning.matches.length >= 1) {
         downloadCaseTrigger({
           lat: warning.matches[0].lat,
           lng: warning.matches[0].lng,

@@ -4,7 +4,12 @@ import { Button, Image, Platform, StyleSheet, Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 import startLocationTracking from "../helpers/startLocationTracking";
-import { clearAll, downloadInfections, generateWarnings } from "../actions";
+import {
+  clearAll,
+  downloadInfections,
+  generateWarnings,
+  generateFakeInfections
+} from "../actions";
 import WarningList from "../components/WarningList";
 import WarningGenerator from "../components/WarningGenerator";
 import {
@@ -24,6 +29,7 @@ function HomeScreen(props) {
     clearAllTrigger,
     downloadInfectionsTrigger,
     generateWarningsTrigger,
+    generateFakeInfectionsTrigger,
     filteredWarningsCount,
     positions,
     tracks,
@@ -63,10 +69,22 @@ function HomeScreen(props) {
             title={`Get data from server current: ${tracksCount}`}
             onPress={e => downloadInfectionsTrigger()}
           />
+          <Text>Download data in the area you were in from the server</Text>
           <Button
             title={`Generate warnings: ${filteredWarningsCount}/${warningsCount}`}
             onPress={e => generateWarningsTrigger({ positions, tracks })}
           />
+          <Text>Generates the warnings locally</Text>
+
+          <Button
+            title={`Generate fake infection`}
+            onPress={e =>
+              generateFakeInfectionsTrigger(positions[positions.length - 1])
+            }
+          />
+          <Text>
+            Generates some fake points around you last position (local)
+          </Text>
           <Button title="reset" onPress={e => clearAllTrigger()} />
         </View>
       </ScrollView>
@@ -181,7 +199,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   generateWarningsTrigger: data => dispatch(generateWarnings(data)),
   clearAllTrigger: id => dispatch(clearAll(id)),
-  downloadInfectionsTrigger: id => dispatch(downloadInfections(id))
+  downloadInfectionsTrigger: id => dispatch(downloadInfections(id)),
+  generateFakeInfectionsTrigger: data => dispatch(generateFakeInfections(data))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

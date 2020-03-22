@@ -1,9 +1,11 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { connect } from "react-redux";
 import { Body, Button, Right, List, ListItem, Text } from "native-base";
 import { setDetail } from "../../actions";
 import { getAllWarnings } from "../../selectors";
+import VirusImage from "../../assets/images/virus-image-01";
+import commonColor from "../../native-base-theme/variables/commonColor";
 
 const options = {
   weekday: "short",
@@ -18,6 +20,17 @@ function WarningList({ navigation, setDetailTrigger, warnings }) {
   const filteredWarnings = warnings.filter(
     e => e.matches && e.matches.length >= 1
   );
+  if (filteredWarnings.length === 0) {
+    return (
+      <View style={styles.introWrapper}>
+        <VirusImage width={220} style={styles.image} />
+        <Text style={styles.title}>No warning</Text>
+        <Text style={styles.subTitle}>
+          There is currently no contact reported.
+        </Text>
+      </View>
+    );
+  }
   return (
     <List>
       {filteredWarnings.map((e, i) => (
@@ -48,6 +61,29 @@ const styles = StyleSheet.create({
   date: {
     color: "#000",
     marginBottom: 12
+  },
+  introWrapper: {
+    height: 540,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  image: {
+    marginTop: 0,
+    marginBottom: 10,
+    width: 300,
+    height: 300
+  },
+  title: {
+    fontSize: 30,
+    marginBottom: 10
+  },
+  subTitle: {
+    textAlign: "center",
+    fontSize: 15,
+    color: commonColor.textColorLight,
+    marginLeft: 40,
+    marginRight: 40,
+    marginBottom: 20
   }
 });
 

@@ -62,7 +62,8 @@ export const styles = StyleSheet.create({
   panelInner: {
     position: "relative",
     zIndex: 30,
-    backgroundColor: "#ffffff"
+    backgroundColor: "#ffffff",
+    height: 540
   },
   headerInner: {
     zIndex: -10,
