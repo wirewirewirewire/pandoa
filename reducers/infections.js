@@ -16,7 +16,7 @@ export default function todos(state = initialState, action) {
     case API_CALL_INFECTIONS_FAILURE:
       return [];
     case GENERATE_FAKE_INFECTIONS:
-      console.log(action.data);
+      if (action.data === undefined) return [];
       const fakeData = [];
       for (let index = 0; index < 300; index++) {
         const oldDate = new Date(Date.parse(action.data.time));
@@ -26,7 +26,6 @@ export default function todos(state = initialState, action) {
           time: new Date(oldDate.getTime() + Math.random() * 6000000)
         });
       }
-      console.log("fakedata", fakeData);
       return fakeData;
     default:
       return state;

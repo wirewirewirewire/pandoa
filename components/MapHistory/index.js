@@ -5,6 +5,7 @@ import { StyleSheet, View } from "react-native";
 import { getAllPositions, getAllTracks, getAllWarnings } from "../../selectors";
 import Colors from "../../constants/Colors";
 import latLngDistance from "../../helpers/latLngDistance";
+import contactLengthText from "../../helpers/contactLengthText";
 import commonColor from "../../native-base-theme/variables/commonColor";
 import { setDetail } from "../../actions";
 
@@ -104,11 +105,7 @@ const MapHistory = ({ positions, setDetailTrigger, warnings }) => {
           "de-DE",
           options
         )}`}
-        description={
-          point.matches.length >= 1
-            ? `Contact for ${Math.round(point.duration / 1000 / 60)} min`
-            : "no contact found"
-        }
+        description={contactLengthText(point.duration)}
       >
         {point.matches.length >= 1 ? (
           <View style={styles.matchCircle}>

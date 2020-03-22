@@ -6,6 +6,7 @@ import { setDetail } from "../../actions";
 import { getAllWarnings } from "../../selectors";
 import SoapImage from "../../assets/images/soap";
 import commonColor from "../../native-base-theme/variables/commonColor";
+import contactLengthText from "../../helpers/contactLengthText";
 
 const options = {
   weekday: "short",
@@ -31,6 +32,7 @@ function WarningList({ navigation, setDetailTrigger, warnings }) {
       </View>
     );
   }
+
   return (
     <List>
       {filteredWarnings.map((e, i) => (
@@ -41,9 +43,9 @@ function WarningList({ navigation, setDetailTrigger, warnings }) {
               {new Date(e.position.time).toLocaleDateString("de-DE", options)}
             </Text>
             <Text note numberOfLines={2}>
-              {e.matches && e.matches.length >= 1
-                ? `Contact for ${Math.round(e.duration / 1000 / 60)} min`
-                : "no contact found"}
+              {e.matches &&
+                e.matches.length >= 1 &&
+                contactLengthText(e.duration)}
             </Text>
           </Body>
           <Right>

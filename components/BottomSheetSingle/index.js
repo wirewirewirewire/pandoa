@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { getDetail, getWarning, getCase } from "../../selectors";
 import { setDetail, downloadCase } from "../../actions";
 import { Ionicons } from "@expo/vector-icons";
+import contactLengthText from "../../helpers/contactLengthText";
 
 const options = {
   weekday: "short",
@@ -89,7 +90,7 @@ function BottomSheetSingle({
               )}
           </Text>
           <Text style={styles.panelSubTitle}>
-            Contact for {warning && Math.round(warning.duration / 1000 / 60)}min
+            {warning && contactLengthText(warning.duration)}
           </Text>
           <TouchableOpacity
             roundeds

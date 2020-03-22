@@ -10,8 +10,6 @@ import {
   generateWarnings,
   generateFakeInfections
 } from "../actions";
-import WarningList from "../components/WarningList";
-import WarningGenerator from "../components/WarningGenerator";
 import {
   countTracks,
   countPositions,
