@@ -42,6 +42,12 @@ function WarningList({ navigation, setDetailTrigger, warnings }) {
             <Text numberOfLines={2} style={styles.date}>
               {new Date(e.position.time).toLocaleDateString("de-DE", options)}
             </Text>
+            <Text>{JSON.stringify(e.position.geocode)}</Text>
+            {e.position.geocode && (
+              <Text note numberOfLines={2}>
+                {e.position.geocode.country}sss
+              </Text>
+            )}
             <Text note numberOfLines={2}>
               {e.matches &&
                 e.matches.length >= 1 &&
