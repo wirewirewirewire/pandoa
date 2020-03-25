@@ -22,7 +22,7 @@ function BottomTabNavigator({ detail, navigation, route }) {
   });
 
   const navigationParams = useRoute();
-  console.log(route, route.state.routes[1].state.index);
+  //console.log(route, route.state.routes[1].state.index);
   // route.state.index === 2 &&
   return (
     <BottomTab.Navigator
@@ -45,7 +45,10 @@ function BottomTabNavigator({ detail, navigation, route }) {
         component={ReportScreen}
         options={{
           title: "Report case",
-          tabBarVisible: route.state.routes[1].state.index === 0,
+          tabBarVisible:
+            route.state &&
+            route.state.routes[1].state &&
+            route.state.routes[1].state.index === 0,
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="md-umbrella" />
           )

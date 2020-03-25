@@ -35,34 +35,6 @@ function WarningList({ navigation, setDetailTrigger, warnings }) {
 
   return (
     <List>
-<<<<<<< HEAD
-      {filteredWarnings.map((e, i) => (
-        <ListItem key={i}>
-          <Body>
-            <Text>{e.title}</Text>
-            <Text numberOfLines={2} style={styles.date}>
-              {new Date(e.position.time).toLocaleDateString("de-DE", options)}
-            </Text>
-            <Text>{JSON.stringify(e.position.geocode)}</Text>
-            {e.position.geocode && (
-              <Text note numberOfLines={2}>
-                {e.position.geocode.country}sss
-              </Text>
-            )}
-            <Text note numberOfLines={2}>
-              {e.matches &&
-                e.matches.length >= 1 &&
-                contactLengthText(e.duration)}
-            </Text>
-          </Body>
-          <Right>
-            <Button transparent onPress={() => setDetailTrigger(i)}>
-              <Text>Details</Text>
-            </Button>
-          </Right>
-        </ListItem>
-      ))}
-=======
       {filteredWarnings.map((e, i) => {
         const geocode =
           e.position.geocode && e.position.geocode[0]
@@ -104,7 +76,6 @@ function WarningList({ navigation, setDetailTrigger, warnings }) {
           </ListItem>
         );
       })}
->>>>>>> my-temporary-work
     </List>
   );
 }
