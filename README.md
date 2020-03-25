@@ -12,13 +12,20 @@ Slack: #pandoa_coronaviruscarriertracker
 
 Would be great if you could help!
 
+<<<<<<< HEAD
 - **Frontend** (react native (expo)) [Robert Gühne](https://github.com/Utzel-Butzel), [KaiHawaii](https://github.com/Kaipirinha)
 - **Backend** (currently we use node.js with mongodb) [Daniel Böber](https://github.com/smarthomeagentur), [KaiHawaii](https://github.com/Kaipirinha)
+=======
+- **Backend** (currently we use node.js with mongodb) [Daniel Böber](https://github.com/smarthomeagentur), [KaiHawaii](https://github.com/Kaipirinha), [Tim](https://github.com/pr1zm)
+- **Frontend** (react native (expo)) [Robert Gühne](https://github.com/Utzel-Butzel), [KaiHawaii](https://github.com/Kaipirinha
+>>>>>>> e9f7b89f533031107e3fd31cb66807640d0d2876
 - **Testing** (giving feedback on bugs, testing in real life environments) Valentin - Medizin, Machine Learning Modelle, Epidemiologie
 - **Evaluation** (machine learning and data analytics) [Sören](https://github.com/soerili)
-- **Communications & organisation** [Chris Walter]() Hans (rooom)
+- **Communications & organisation** [Chris Walter], [Hans - rooom.com] (https://github.com/Hans-rooom) 
 - **Media** (creating communication material, presentations, videos, etc.) Soprathna
 - **CI/CD, Devops** (currently we use AWS EC2 and cloudfront)
+
+Project Plan (Todos): https://trello.com/b/LlLyGAF3/pandoa
 
 ### Corona Tracker
 
@@ -43,11 +50,17 @@ If you got infected you can anonymously share your positions of the last 1-2 wee
 
 ### The tech behind
 
-![Infection chain tracker](https://raw.githubusercontent.com/wirewirewirewire/pandoa/master/assets/images/how-it-works.png)
+![Infection chain tracker](https://user-images.githubusercontent.com/3281586/77271220-67cfc380-6cae-11ea-811a-7e846edd4f15.png)
 
 - **Blue lines** This is your own movement
 - **Small black dots** These are the positions of infected patients
 - **Red lines** This is when you have been in contact with an infected person (at the same position and the same time)
+
+### Youtube video
+
+[![YouTube video](https://i.ytimg.com/vi/8NdGOpGB-WA/maxresdefault.jpg)](https://www.youtube.com/watch?v=8NdGOpGB-WA "YouTube video")
+
+![Screendesigns](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/000/972/815/datas/gallery.jpg)
 
 ### How to use
 

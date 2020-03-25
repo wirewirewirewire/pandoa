@@ -24,6 +24,7 @@ function ReportForm({ reportCaseTrigger, positions }) {
   const onSubmit = data => {
     Alert.alert("Data submitted");
     reportCaseTrigger(positions);
+
     // Alert.alert("Form Data", JSON.stringify(data), positions.length);
   };
 
@@ -138,7 +139,6 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  //reportCaseTrigger: data => dispatch(reportCase(data))
   reportCaseTrigger: data => dispatch(reportCase(data))
 });
 
