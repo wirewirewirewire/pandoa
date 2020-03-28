@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import {
   Switch,
@@ -8,115 +8,140 @@ import {
   TouchableOpacity
 } from "react-native";
 import BottomSheet from "reanimated-bottom-sheet";
+import startLocationTracking from "../helpers/startLocationTracking";
+import stopLocationTracking from "../helpers/stopLocationTracking";
 
 import { Button, Icon, StyleProvider, Text } from "native-base";
 import { connect } from "react-redux";
 import WarningList from "./WarningList";
 import LargeButton from "./LargeButton";
 import { countFilteredWarnings } from "../selectors";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import commonColor from "../native-base-theme/variables/commonColor";
 
-class BottomSheetDetails extends Component {
-  constructor(props) {
-    super(props);
-    this.bottomSheetRef = React.createRef();
-  }
+function BottomSheetMe(props) {
+  const bottomSheetRef = useRef();
+  const [trackingStatus, setTrackingStatus] = useState(false);
 
-  //TODO: improve implementation
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.detail !== false) {
-      setTimeout(() => {
-        this.bottomSheetRef.current.snapTo(0);
-      }, 200);
+  const toggleSwitch = e => {
+    if (e === true) {
+      startLocationTracking();
+      setTrackingStatus(true);
     } else {
-      setTimeout(() => {
-        this.bottomSheetRef.current.snapTo(1);
-      }, 200);
+      stopLocationTracking();
+      setTrackingStatus(false);
     }
-  }
+    console.log("toggleSwitch", e);
+  };
 
-  toggleSwitch = () => {};
+  const { contentPosition, filteredWarnings, navigation } = props;
 
-  render() {
-    const { contentPosition, filteredWarnings, navigation } = this.props;
+  const renderInnerDetails = () => {
+    return (
+      <View style={styles.panelInner}>
+        <View style={styles.buttonWrapper}>
+          <LargeButton>
+            <View style={styles.switchTracking}>
+              <View style={styles.description}>
+                <Text>Enable tracking</Text>
+                <Text style={styles.subText}>
+                  This will record your movement every 5 min
+                </Text>
+              </View>
+              <Switch onValueChange={toggleSwitch} value={trackingStatus} />
+            </View>
+          </LargeButton>
+        </View>
+        <View style={styles.buttonWrapper}>
+          <LargeButton>
+            <MaterialCommunityIcons
+              name="file-import"
+              size={33}
+              color={commonColor.brandPrimary}
+            />
+            <Text>Import </Text>
+          </LargeButton>
+          <LargeButton>
+            <MaterialCommunityIcons
+              name="database-export"
+              size={33}
+              color={commonColor.brandSuccess}
+            />
+            <Text>Export</Text>
+          </LargeButton>
+        </View>
+        <View style={styles.buttonWrapper}>
+          <LargeButton>
+            <View style={styles.switchTracking}>
+              <View style={styles.description}>
+                <Text>Remove points</Text>
+                <Text style={styles.subText}>
+                  Remove points from your route
+                </Text>
+              </View>
 
-    const renderInnerDetails = () => {
-      return (
-        <View style={styles.panelInner}>
-          <View style={styles.buttonWrapper}>
-            <LargeButton>
-              <Text>Enable tracking</Text>
-              <Switch onValueChange={this.toggleSwitch} value={true} />
-            </LargeButton>
+              <MaterialCommunityIcons
+                name="chevron-right"
+                size={33}
+                color={commonColor.textColorLight}
+              />
+            </View>
+          </LargeButton>
+        </View>
+      </View>
+    );
+  };
+  const renderInnerHeader = () => {
+    return (
+      <>
+        <View style={styles.headerShadow} />
+        <View style={styles.headerInner}>
+          <View style={styles.panelHeader}>
+            <View style={styles.panelHandle} />
           </View>
-          <View style={styles.buttonWrapper}>
-            <LargeButton>
-              <Text>Import </Text>
-            </LargeButton>
-            <LargeButton>
-              <Text>Export</Text>
-            </LargeButton>
-          </View>
-          <View style={styles.buttonWrapper}>
-            <LargeButton>
-              <Text>Remove points</Text>
-            </LargeButton>
+          <View style={styles.panelTitleWrapper}>
+            <Text style={styles.panelTitle}>My tracks</Text>
           </View>
         </View>
-      );
-    };
-    const renderInnerHeader = () => {
-      return (
-        <>
-          <View style={styles.headerShadow} />
-          <View style={styles.headerInner}>
-            <View style={styles.panelHeader}>
-              <View style={styles.panelHandle} />
-            </View>
-            <View style={styles.panelTitleWrapper}>
-              <Text style={styles.panelTitle}>Me</Text>
-
-              <Button rounded small style={styles.buttonUpdate}>
-                <Ionicons
-                  style={styles.buttonUpdateIcon}
-                  name="md-refresh"
-                  size={19}
-                  color="#fff"
-                />
-                <Text style={styles.buttonUpdateText}>Update</Text>
-              </Button>
-            </View>
-          </View>
-        </>
-      );
-    };
-
-    return (
-      <BottomSheet
-        ref={this.bottomSheetRef}
-        contentPosition={contentPosition}
-        snapPoints={[65, 238, 600]}
-        renderContent={renderInnerDetails}
-        renderHeader={renderInnerHeader}
-      />
+      </>
     );
-  }
+  };
+
+  return (
+    <BottomSheet
+      ref={bottomSheetRef}
+      contentPosition={contentPosition}
+      snapPoints={[65, 238, 600]}
+      renderContent={renderInnerDetails}
+      renderHeader={renderInnerHeader}
+    />
+  );
 }
-export const styles = StyleSheet.create({
+
+const styles = StyleSheet.create({
   panelInner: {
     position: "relative",
     zIndex: 30,
-    backgroundColor: "#ffffff",
+    backgroundColor: commonColor.containerDarkBgColor,
     minHeight: 540
+  },
+  switchTracking: {
+    flexDirection: "row",
+    alignContent: "stretch"
+  },
+  description: {
+    flex: 1
+  },
+  subText: {
+    fontSize: 12,
+    color: commonColor.textColorLight
   },
   headerInner: {
     zIndex: -10,
     position: "relative",
-    backgroundColor: "#ffffff",
+    backgroundColor: commonColor.containerDarkBgColor,
     paddingTop: 10,
-    height: 62,
-    borderBottomWidth: 1,
-    borderBottomColor: "#DFE3E6",
+    height: 50,
     paddingLeft: 20,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15
@@ -191,4 +216,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(BottomSheetDetails);
+export default connect(mapStateToProps)(BottomSheetMe);
