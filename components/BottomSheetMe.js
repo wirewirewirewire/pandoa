@@ -115,7 +115,7 @@ function BottomSheetMe(props) {
     <BottomSheet
       ref={bottomSheetRef}
       contentPosition={contentPosition}
-      snapPoints={[60, 238, 600]}
+      snapPoints={[60, 338]}
       renderContent={renderInnerDetails}
       renderHeader={renderInnerHeader}
     />
