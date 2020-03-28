@@ -1,5 +1,12 @@
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
+} from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as Sharing from "expo-sharing";
 import { getAllPositions } from "../selectors";
@@ -20,19 +27,21 @@ function Share({ children, positions }) {
     const jsonData = Buffer.from(JSON.stringify(positions)).toString("base64");
     const url = "data:application/json;base64," + jsonData;
 
-    console.log("url", url);
+    //console.log("url", url);
 
     await FileSystem.writeAsStringAsync(
-      FileSystem.documentDirectory + "hello.json",
-      url
+      FileSystem.documentDirectory + "pandeo-export.json",
+      JSON.stringify(positions)
     );
-    /*
-    Sharing.shareAsync(url, {
-      message: "hello",
+
+    Sharing.shareAsync(FileSystem.documentDirectory + "pandeo-export.json", {
+      message: "pandeo-export.json",
       type: "application/json",
       title: "Gread"
-    });*/
+    });
   };
+
+  //Alert.alert("File saved", "All points saved on your local filesystem");
 
   return (
     <TouchableOpacity onPress={openShareDialogAsync} style={styles.button}>
