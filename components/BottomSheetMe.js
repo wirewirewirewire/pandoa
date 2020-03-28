@@ -63,15 +63,16 @@ function BottomSheetMe(props) {
             />
             <Text>Import </Text>
           </LargeButton>
-          <LargeButton>
-            <MaterialCommunityIcons
-              name="database-export"
-              size={33}
-              color={commonColor.brandSuccess}
-            />
-            <Text>Export</Text>
-          </LargeButton>
-          <Share />
+          <Share>
+            <LargeButton>
+              <MaterialCommunityIcons
+                name="database-export"
+                size={33}
+                color={commonColor.brandSuccess}
+              />
+              <Text>Export</Text>
+            </LargeButton>
+          </Share>
         </View>
         <View style={styles.buttonWrapper}>
           <LargeButton>
