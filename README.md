@@ -14,13 +14,10 @@ Slack: #pandoa_coronaviruscarriertracker
 
 Would be great if you could help!
 
-<<<<<<< HEAD
 
 - **Frontend** (react native (expo)) [Robert Gühne](https://github.com/Utzel-Butzel), [KaiHawaii](https://github.com/Kaipirinha)
-- # **Backend** (currently we use node.js with mongodb) [Daniel Böber](https://github.com/smarthomeagentur), [KaiHawaii](https://github.com/Kaipirinha)
 - **Backend** (currently we use node.js with mongodb) [Daniel Böber](https://github.com/smarthomeagentur), [KaiHawaii](https://github.com/Kaipirinha), [Tim](https://github.com/pr1zm)
 - **Frontend** (react native (expo)) [Robert Gühne](https://github.com/Utzel-Butzel), [KaiHawaii](https://github.com/Kaipirinha
-  > > > > > > > e9f7b89f533031107e3fd31cb66807640d0d2876
 - **Testing** (giving feedback on bugs, testing in real life environments) Valentin - Medizin, Machine Learning Modelle, Epidemiologie
 - **Evaluation** (machine learning and data analytics) [Sören](https://github.com/soerili)
 - **Communications & organisation** [Chris Walter], [Hans - rooom.com](https://github.com/Hans-rooom)
