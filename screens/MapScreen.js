@@ -3,7 +3,7 @@ import { StyleSheet, View, Dimensions } from "react-native";
 import { connect } from "react-redux";
 import Animated from "react-native-reanimated";
 import MapHistory from "../components/MapHistory";
-import BottomSheetDetails from "../components/BottomSheetDetails";
+import BottomSheetDetails from "../components/BottomSheetWarnings";
 import BottomSheetSingle from "../components/BottomSheetSingle";
 import PaddedMapView from "../components/PaddedMapView";
 import TrackHistory from "../components/TrackHistory";

@@ -9,21 +9,15 @@ import { connect } from "react-redux";
 import { useRoute } from "@react-navigation/native";
 
 const BottomTab = createBottomTabNavigator();
-const INITIAL_ROUTE_NAME = "Warnings";
+const INITIAL_ROUTE_NAME = "Home";
 
 function BottomTabNavigator({ detail, navigation, route }) {
-  // Set the header title on the parent stack navigator depending on the
-  // currently active tab. Learn more in the documentation:
-  // https://reactnavigation.org/docs/en/screen-options-resolution.html
   navigation.setOptions({
     headerShown: false,
     headerMode: "screen",
     headerTitle: getHeaderTitle(route)
   });
 
-  const navigationParams = useRoute();
-  //console.log(route, route.state.routes[1].state.index);
-  // route.state.index === 2 &&
   return (
     <BottomTab.Navigator
       initialRouteName={INITIAL_ROUTE_NAME}

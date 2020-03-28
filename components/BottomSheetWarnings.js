@@ -5,8 +5,8 @@ import BottomSheet from "reanimated-bottom-sheet";
 
 import { Button, Icon, StyleProvider, Text } from "native-base";
 import { connect } from "react-redux";
-import WarningList from "../WarningList";
-import { countFilteredWarnings } from "../../selectors";
+import WarningList from "./WarningList";
+import { countFilteredWarnings } from "../selectors";
 
 class BottomSheetDetails extends Component {
   constructor(props) {
@@ -39,14 +39,17 @@ class BottomSheetDetails extends Component {
     };
     const renderInnerHeader = () => {
       return (
-        <View style={styles.headerInner}>
-          <View style={styles.panelHeader}>
-            <View style={styles.panelHandle} />
+        <>
+          <View style={styles.headerShadow} />
+          <View style={styles.headerInner}>
+            <View style={styles.panelHeader}>
+              <View style={styles.panelHandle} />
+            </View>
+            <Text style={styles.panelTitle}>
+              {filteredWarnings >= 1 ? filteredWarnings : "No"} Warnings
+            </Text>
           </View>
-          <Text style={styles.panelTitle}>
-            {filteredWarnings >= 1 ? filteredWarnings : "No"} Warnings
-          </Text>
-        </View>
+        </>
       );
     };
 
@@ -78,14 +81,24 @@ export const styles = StyleSheet.create({
     borderBottomColor: "#DFE3E6",
     paddingLeft: 20,
     borderTopLeftRadius: 15,
+    borderTopRightRadius: 15
+  },
+  headerShadow: {
+    width: "100%",
+    height: 30,
+    borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
+    position: "absolute",
+    backgroundColor: "red",
+    zIndex: -10,
+    top: 0,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: -2
     },
     shadowOpacity: 0.1,
-    shadowRadius: 3,
+    shadowRadius: 12,
     elevation: 5
   },
   panelHeader: {

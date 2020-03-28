@@ -6,6 +6,8 @@
 
 [DevPost](https://devpost.com/software/08_pandoa-corona-virus-tracker)
 
+[API on Postman](https://documenter.getpostman.com/view/543781/SzS7R6ux?version=latest#66f3eb99-2302-4300-8bc3-e62f6ee88cbd)
+
 Slack: #pandoa_coronaviruscarriertracker
 
 # How can I contribute?
@@ -13,15 +15,15 @@ Slack: #pandoa_coronaviruscarriertracker
 Would be great if you could help!
 
 <<<<<<< HEAD
+
 - **Frontend** (react native (expo)) [Robert Gühne](https://github.com/Utzel-Butzel), [KaiHawaii](https://github.com/Kaipirinha)
-- **Backend** (currently we use node.js with mongodb) [Daniel Böber](https://github.com/smarthomeagentur), [KaiHawaii](https://github.com/Kaipirinha)
-=======
+- # **Backend** (currently we use node.js with mongodb) [Daniel Böber](https://github.com/smarthomeagentur), [KaiHawaii](https://github.com/Kaipirinha)
 - **Backend** (currently we use node.js with mongodb) [Daniel Böber](https://github.com/smarthomeagentur), [KaiHawaii](https://github.com/Kaipirinha), [Tim](https://github.com/pr1zm)
 - **Frontend** (react native (expo)) [Robert Gühne](https://github.com/Utzel-Butzel), [KaiHawaii](https://github.com/Kaipirinha
->>>>>>> e9f7b89f533031107e3fd31cb66807640d0d2876
+  > > > > > > > e9f7b89f533031107e3fd31cb66807640d0d2876
 - **Testing** (giving feedback on bugs, testing in real life environments) Valentin - Medizin, Machine Learning Modelle, Epidemiologie
 - **Evaluation** (machine learning and data analytics) [Sören](https://github.com/soerili)
-- **Communications & organisation** [Chris Walter], [Hans - rooom.com] (https://github.com/Hans-rooom) 
+- **Communications & organisation** [Chris Walter], [Hans - rooom.com](https://github.com/Hans-rooom)
 - **Media** (creating communication material, presentations, videos, etc.) Soprathna
 - **CI/CD, Devops** (currently we use AWS EC2 and cloudfront)
 

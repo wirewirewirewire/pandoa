@@ -10,18 +10,12 @@ export const setVisibilityFilter = filter => ({
   type: types.SET_VISIBILITY_FILTER,
   filter
 });
-/*
-export const reportCase = data => ({
-  type: types.DELETE_TODO,
-  data
-});*/
 
 export const downloadInfections = () => ({
   type: types.API_CALL_INFECTIONS_REQUEST
 });
 
 export const downloadCase = data => {
-  console.log("dddddddddd", data);
   return {
     type: types.API_CALL_CASE_REQUEST,
     data
@@ -37,16 +31,6 @@ export const generateWarnings = data => ({
   type: types.GENERATE_WARNINGS,
   data
 });
-
-/*
-export const generateFakeInfections = data => {
-  console.log("data", data);
-  return {
-    type: types.GENERATE_FAKE_INFECTIONS,
-    data
-  };
-};
-*/
 
 export const generateFakeInfections = data => ({
   type: types.GENERATE_FAKE_INFECTIONS,
