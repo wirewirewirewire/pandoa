@@ -16,7 +16,8 @@ import {
   Item,
   Input,
   Text,
-  Label
+  Label,
+  Picker
 } from "native-base";
 
 function ReportForm({ reportCaseTrigger, positions }) {
@@ -37,11 +38,34 @@ function ReportForm({ reportCaseTrigger, positions }) {
         </Text>
         <View style={styles.inputWrapper}>
           <Item>
+            <Text>Picker</Text>
             <Controller
-              as={Input}
+              as={e => {
+                console.log(e);
+                return (
+                  <Picker
+                    note
+                    mode="dropdown"
+                    style={{ width: 120 }}
+                    selectedValue={"key3"}
+                    onValueChange={() => {}}
+                  >
+                    <Picker.Item label="Wallet" value="key0" />
+                    <Picker.Item label="ATM Card" value="key1" />
+                    <Picker.Item label="Debit Card" value="key2" />
+                    <Picker.Item label="Credit Card" value="key3" />
+                    <Picker.Item label="Net Banking" value="key4" />
+                  </Picker>
+                );
+              }}
               control={control}
               name="firstName"
               onChange={args => args[0].nativeEvent.text}
+              onChange={e => {
+                return "key1";
+                // Place your logic here
+                return selected;
+              }}
               rules={{ required: true }}
               defaultValue=""
               placeholder="Username"
@@ -66,7 +90,7 @@ function ReportForm({ reportCaseTrigger, positions }) {
         </Text>
         <View style={styles.inputWrapper}>
           <Item>
-            {/*<Label>Contact phone number</Label>*/}
+            <Label>Contact phone number</Label>
             <Controller
               as={Input}
               control={control}
@@ -79,7 +103,7 @@ function ReportForm({ reportCaseTrigger, positions }) {
         <Text style={styles.hintText}>Enter information for you contact.</Text>
         <View style={styles.inputWrapper}>
           <Item style={styles.input}>
-            {/*<Label>Contact information</Label>*/}
+            <Label>Contact information</Label>
             <Controller
               as={Input}
               control={control}
@@ -124,10 +148,6 @@ const styles = StyleSheet.create({
     margin: 13
   },
   inputWrapper: {
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: "#CCC",
-    backgroundColor: "#fff",
     marginTop: 10
   }
 });

@@ -141,7 +141,7 @@ function BottomSheetSingle({
     <BottomSheet
       ref={bottomSheetRef}
       contentPosition={contentPosition}
-      snapPoints={[0, 238, 600]}
+      snapPoints={[0, 238, 400]}
       onCloseEnd={() => {
         setDetailTrigger(false);
       }}
@@ -151,8 +151,13 @@ function BottomSheetSingle({
   );
 }
 export const styles = StyleSheet.create({
+  bottomSheetWrapper: {
+    //position: "relative",
+    // top: 20
+  },
   panelInner: {
     position: "relative",
+    minHeight: 540,
     zIndex: 30,
     backgroundColor: "#ffffff"
   },

@@ -1,11 +1,18 @@
 import React, { Component } from "react";
 
-import { StyleSheet, View, Dimensions, TouchableOpacity } from "react-native";
+import {
+  Switch,
+  StyleSheet,
+  View,
+  Dimensions,
+  TouchableOpacity
+} from "react-native";
 import BottomSheet from "reanimated-bottom-sheet";
 
 import { Button, Icon, StyleProvider, Text } from "native-base";
 import { connect } from "react-redux";
 import WarningList from "./WarningList";
+import LargeButton from "./LargeButton";
 import { countFilteredWarnings } from "../selectors";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -28,13 +35,33 @@ class BottomSheetDetails extends Component {
     }
   }
 
+  toggleSwitch = () => {};
+
   render() {
     const { contentPosition, filteredWarnings, navigation } = this.props;
 
     const renderInnerDetails = () => {
       return (
         <View style={styles.panelInner}>
-          <WarningList navigation={navigation} />
+          <View style={styles.buttonWrapper}>
+            <LargeButton>
+              <Text>Enable tracking</Text>
+              <Switch onValueChange={this.toggleSwitch} value={true} />
+            </LargeButton>
+          </View>
+          <View style={styles.buttonWrapper}>
+            <LargeButton>
+              <Text>Import </Text>
+            </LargeButton>
+            <LargeButton>
+              <Text>Export</Text>
+            </LargeButton>
+          </View>
+          <View style={styles.buttonWrapper}>
+            <LargeButton>
+              <Text>Remove points</Text>
+            </LargeButton>
+          </View>
         </View>
       );
     };
@@ -47,9 +74,7 @@ class BottomSheetDetails extends Component {
               <View style={styles.panelHandle} />
             </View>
             <View style={styles.panelTitleWrapper}>
-              <Text style={styles.panelTitle}>
-                {filteredWarnings >= 1 ? filteredWarnings : "No"} Warnings
-              </Text>
+              <Text style={styles.panelTitle}>Me</Text>
 
               <Button rounded small style={styles.buttonUpdate}>
                 <Ionicons
@@ -58,7 +83,7 @@ class BottomSheetDetails extends Component {
                   size={19}
                   color="#fff"
                 />
-                <Text style={styles.buttonUpdateText}>Check overlap</Text>
+                <Text style={styles.buttonUpdateText}>Update</Text>
               </Button>
             </View>
           </View>
@@ -95,6 +120,10 @@ export const styles = StyleSheet.create({
     paddingLeft: 20,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15
+  },
+  buttonWrapper: {
+    flexDirection: "row",
+    alignContent: "stretch"
   },
   headerShadow: {
     width: "100%",

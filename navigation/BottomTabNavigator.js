@@ -4,6 +4,7 @@ import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import ReportScreen from "../screens/ReportScreen";
 import MapScreen from "../screens/MapScreen";
+import MeScreen from "../screens/MeScreen";
 import { getDetail } from "../selectors";
 import { connect } from "react-redux";
 import { useRoute } from "@react-navigation/native";
@@ -31,6 +32,17 @@ function BottomTabNavigator({ detail, navigation, route }) {
           title: "Warnings",
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="md-map" />
+          )
+        }}
+      />
+      <BottomTab.Screen
+        name="Me"
+        component={MeScreen}
+        options={{
+          tabBarVisible: detail === false,
+          title: "Me",
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name="md-person" />
           )
         }}
       />
