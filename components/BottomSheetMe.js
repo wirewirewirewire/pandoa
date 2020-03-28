@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import * as Sharing from "expo-sharing";
 
 import {
   Switch,
@@ -18,6 +19,7 @@ import LargeButton from "./LargeButton";
 import { countFilteredWarnings } from "../selectors";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import commonColor from "../native-base-theme/variables/commonColor";
+import Share from "./Share";
 
 function BottomSheetMe(props) {
   const bottomSheetRef = useRef();
@@ -69,6 +71,7 @@ function BottomSheetMe(props) {
             />
             <Text>Export</Text>
           </LargeButton>
+          <Share />
         </View>
         <View style={styles.buttonWrapper}>
           <LargeButton>
@@ -111,7 +114,7 @@ function BottomSheetMe(props) {
     <BottomSheet
       ref={bottomSheetRef}
       contentPosition={contentPosition}
-      snapPoints={[65, 238, 600]}
+      snapPoints={[60, 238, 600]}
       renderContent={renderInnerDetails}
       renderHeader={renderInnerHeader}
     />
