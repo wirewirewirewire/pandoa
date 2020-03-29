@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-import { StyleSheet, View, TouchableOpacity } from "react-native";
+import { StyleSheet, View, TouchableOpacity, ScrollView } from "react-native";
 import BottomSheet from "reanimated-bottom-sheet";
 import { Body, List, ListItem, Text } from "native-base";
 import variable from "../native-base-theme/variables/platform";
@@ -122,7 +122,6 @@ function BottomSheetSingle({
             <Text style={styles.panelSubTitle}>
               {warning && contactLengthText(warning.duration)}
             </Text>
-
             <TouchableOpacity
               roundeds
               light
@@ -132,6 +131,11 @@ function BottomSheetSingle({
               <Ionicons name="md-close" size={23} color="#000" />
             </TouchableOpacity>
           </View>
+
+          <ScrollView contentContainerStyle={{ paddingBottom: 5, paddingTop: 5 }} >
+            {renderInnerDetails()}
+          </ScrollView>
+
         </View>
       </>
     );
@@ -141,11 +145,11 @@ function BottomSheetSingle({
     <BottomSheet
       ref={bottomSheetRef}
       contentPosition={contentPosition}
-      snapPoints={[0, 238, 400]}
+      snapPoints={[0, 400]}
       onCloseEnd={() => {
         setDetailTrigger(false);
       }}
-      renderContent={renderInnerDetails}
+      // renderContent={renderInnerDetails}
       renderHeader={renderInnerHeader}
     />
   );
@@ -157,7 +161,7 @@ export const styles = StyleSheet.create({
   },
   panelInner: {
     position: "relative",
-    minHeight: 540,
+    minHeight: 200,
     zIndex: 30,
     backgroundColor: "#ffffff"
   },
@@ -173,14 +177,14 @@ export const styles = StyleSheet.create({
   },
   pointListElement: {
     marginTop: 10,
-    marginBottom: 10
+    marginBottom: 10,
   },
   headerInner: {
     zIndex: -10,
     position: "relative",
     backgroundColor: "#ffffff",
     paddingTop: 10,
-    height: 80,
+    height: 500,
     //borderBottomWidth: 1,
     //borderBottomColor: "#DFE3E6",
     paddingLeft: 20,
