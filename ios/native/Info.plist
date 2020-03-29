@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -25,7 +29,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Allow Pandoa to use your location</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -40,13 +44,10 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
 	<key>NSAppTransportSecurity</key>
-	<!--See http://ste.vn/2015/06/10/configuring-app-transport-security-ios-9-osx-10-11/ -->
 	<dict>
-    <key>NSAllowsArbitraryLoads</key>
-    <true/>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>localhost</key>
@@ -66,12 +67,10 @@
 	<string>Allow Pandoa to use your location</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Allow Pandoa to use your location</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Allow Pandoa to use your location</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Allow Pandoa to access your microphone</string>
 	<key>NSMotionUsageDescription</key>
-	<string>Allow Pandoa to access your device's accelerometer</string>
+	<string>Allow Pandoa to access your device&apos;s accelerometer</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Give Pandoa periences permission to save photos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
