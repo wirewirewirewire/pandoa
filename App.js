@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Platform, StatusBar, StyleSheet, View } from "react-native";
-import { SplashScreen } from "expo";
+//import { SplashScreen } from "expo";
 
 import * as Font from "expo-font";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
@@ -40,7 +40,7 @@ export default function App(props) {
   React.useEffect(() => {
     async function loadResourcesAndDataAsync() {
       try {
-        SplashScreen.preventAutoHide();
+        //SplashScreen.preventAutoHide();
         // Load our initial navigation state
         setInitialNavigationState(await getInitialState());
 
@@ -57,7 +57,7 @@ export default function App(props) {
         console.warn(e);
       } finally {
         setLoadingComplete(true);
-        SplashScreen.hide();
+        //SplashScreen.hide();
       }
     }
 

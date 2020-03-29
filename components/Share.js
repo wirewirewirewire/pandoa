@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
-import * as ImagePicker from "expo-image-picker";
 import * as Sharing from "expo-sharing";
 import { getAllPositions } from "../selectors";
 import { connect } from "react-redux";

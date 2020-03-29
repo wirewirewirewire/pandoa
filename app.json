@@ -4,7 +4,10 @@
     "slug": "pandoa",
     "privacy": "public",
     "sdkVersion": "36.0.0",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -33,13 +36,18 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "bundleIdentifier": "com.polyxo.pando",
       "supportsTablet": true,
       "infoPlist": {
         "UIUserInterfaceStyle": "Light",
-        "UIBackgroundModes": ["location", "fetch"]
+        "UIBackgroundModes": [
+          "location",
+          "fetch"
+        ]
       }
     },
     "android": {
@@ -50,6 +58,9 @@
           "apiKey": "AIzaSyDlxa04o6t9mec3tkLrFNGqI1IY1SkLji0"
         }
       }
-    }
-  }
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
+  },
+  "displayName": "Pandoa",
+  "name": "native"
 }
