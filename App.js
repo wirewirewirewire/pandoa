@@ -3,7 +3,7 @@ import { Button, Platform, StatusBar, StyleSheet, View } from "react-native";
 import { SplashScreen } from "expo";
 
 import * as Font from "expo-font";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import * as Location from "expo-location";
 import * as TaskManager from "expo-task-manager";
@@ -47,6 +47,7 @@ export default function App(props) {
         // Load fonts
         await Font.loadAsync({
           ...Ionicons.font,
+          ...MaterialCommunityIcons.font,
           "space-mono": require("./assets/fonts/SpaceMono-Regular.ttf"),
           Roboto: require("native-base/Fonts/Roboto.ttf"),
           Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")

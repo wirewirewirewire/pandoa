@@ -5,8 +5,9 @@ import BottomSheet from "reanimated-bottom-sheet";
 
 import { Button, Icon, StyleProvider, Text } from "native-base";
 import { connect } from "react-redux";
-import WarningList from "../WarningList";
-import { countFilteredWarnings } from "../../selectors";
+import WarningList from "./WarningList";
+import { countFilteredWarnings } from "../selectors";
+import { Ionicons } from "@expo/vector-icons";
 
 class BottomSheetDetails extends Component {
   constructor(props) {
@@ -39,14 +40,29 @@ class BottomSheetDetails extends Component {
     };
     const renderInnerHeader = () => {
       return (
-        <View style={styles.headerInner}>
-          <View style={styles.panelHeader}>
-            <View style={styles.panelHandle} />
+        <>
+          <View style={styles.headerShadow} />
+          <View style={styles.headerInner}>
+            <View style={styles.panelHeader}>
+              <View style={styles.panelHandle} />
+            </View>
+            <View style={styles.panelTitleWrapper}>
+              <Text style={styles.panelTitle}>
+                {filteredWarnings >= 1 ? filteredWarnings : "No"} Warnings
+              </Text>
+
+              <Button rounded small style={styles.buttonUpdate}>
+                <Ionicons
+                  style={styles.buttonUpdateIcon}
+                  name="md-refresh"
+                  size={19}
+                  color="#fff"
+                />
+                <Text style={styles.buttonUpdateText}>Check overlap</Text>
+              </Button>
+            </View>
           </View>
-          <Text style={styles.panelTitle}>
-            {filteredWarnings >= 1 ? filteredWarnings : "No"} Warnings
-          </Text>
-        </View>
+        </>
       );
     };
 
@@ -54,7 +70,7 @@ class BottomSheetDetails extends Component {
       <BottomSheet
         ref={this.bottomSheetRef}
         contentPosition={contentPosition}
-        snapPoints={[58, 238, 600]}
+        snapPoints={[65, 238, 600]}
         renderContent={renderInnerDetails}
         renderHeader={renderInnerHeader}
       />
@@ -73,19 +89,29 @@ export const styles = StyleSheet.create({
     position: "relative",
     backgroundColor: "#ffffff",
     paddingTop: 10,
-    height: 60,
+    height: 62,
     borderBottomWidth: 1,
     borderBottomColor: "#DFE3E6",
     paddingLeft: 20,
     borderTopLeftRadius: 15,
+    borderTopRightRadius: 15
+  },
+  headerShadow: {
+    width: "100%",
+    height: 30,
+    borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
+    position: "absolute",
+    backgroundColor: "red",
+    zIndex: -10,
+    top: 0,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: -2
     },
     shadowOpacity: 0.1,
-    shadowRadius: 3,
+    shadowRadius: 12,
     elevation: 5
   },
   panelHeader: {
@@ -98,6 +124,24 @@ export const styles = StyleSheet.create({
     borderRadius: 4,
     backgroundColor: "#00000040",
     marginBottom: 3
+  },
+  panelTitleWrapper: {
+    display: "flex",
+    flexDirection: "row",
+    flex: 0,
+    justifyContent: "space-between"
+  },
+
+  buttonUpdate: {
+    fontSize: 15,
+    marginRight: 10
+  },
+  buttonUpdateText: {
+    fontSize: 15
+  },
+  buttonUpdateIcon: {
+    marginLeft: 10,
+    marginRight: -10
   },
   panelTitle: {
     fontSize: 22,

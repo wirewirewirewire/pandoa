@@ -44,7 +44,12 @@
     },
     "android": {
       "package": "com.polyxo.pando",
-      "versionCode": 2
+      "versionCode": 2,
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDlxa04o6t9mec3tkLrFNGqI1IY1SkLji0"
+        }
+      }
     }
   }
 }

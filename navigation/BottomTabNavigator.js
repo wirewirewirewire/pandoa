@@ -4,26 +4,21 @@ import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import ReportScreen from "../screens/ReportScreen";
 import MapScreen from "../screens/MapScreen";
+import MeScreen from "../screens/MeScreen";
 import { getDetail } from "../selectors";
 import { connect } from "react-redux";
 import { useRoute } from "@react-navigation/native";
 
 const BottomTab = createBottomTabNavigator();
-const INITIAL_ROUTE_NAME = "Warnings";
+const INITIAL_ROUTE_NAME = "Home";
 
 function BottomTabNavigator({ detail, navigation, route }) {
-  // Set the header title on the parent stack navigator depending on the
-  // currently active tab. Learn more in the documentation:
-  // https://reactnavigation.org/docs/en/screen-options-resolution.html
   navigation.setOptions({
     headerShown: false,
     headerMode: "screen",
     headerTitle: getHeaderTitle(route)
   });
 
-  const navigationParams = useRoute();
-  //console.log(route, route.state.routes[1].state.index);
-  // route.state.index === 2 &&
   return (
     <BottomTab.Navigator
       initialRouteName={INITIAL_ROUTE_NAME}
@@ -37,6 +32,17 @@ function BottomTabNavigator({ detail, navigation, route }) {
           title: "Warnings",
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="md-map" />
+          )
+        }}
+      />
+      <BottomTab.Screen
+        name="Me"
+        component={MeScreen}
+        options={{
+          tabBarVisible: detail === false,
+          title: "Me",
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name="md-person" />
           )
         }}
       />

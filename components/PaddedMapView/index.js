@@ -2,8 +2,12 @@ import React, { Component } from "react";
 import MapView from "react-native-maps";
 import { connect } from "react-redux";
 import { getAllPositions } from "../../selectors";
-import { Button, Icon } from "react-native-elements";
-import { StyleSheet } from "react-native";
+import { Button, Text } from "native-base";
+import { Ionicons } from "@expo/vector-icons";
+
+//import { Button, Icon } from "react-native-elements";
+import { StyleSheet, View } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const EDGE_PADDING = {
   top: 30,
@@ -57,28 +61,47 @@ class PaddedMapView extends Component {
           onLayout={this.fitToMarkers}
           {...this.props}
         />
-        <Button
-          onPress={this.fitToCenter}
-          icon={
-            <Icon type="material-community" name="crosshairs-gps" size={25} />
-          }
-          buttonStyle={styles.buttonStyle}
-          containerStyle={styles.containerStyle}
-        />
+        <View style={styles.view}>
+          <TouchableOpacity style={styles.button} onPress={this.fitToCenter}>
+            <Ionicons name="md-locate" size={30} color="#000" />
+          </TouchableOpacity>
+        </View>
       </>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  buttonStyle: {
-    backgroundColor: "white",
-    borderRadius: 50
-  },
-  containerStyle: {
+  view: {
     position: "absolute",
-    top: "12%",
-    right: "7%"
+    right: "0%",
+    top: "9%",
+    flex: 1,
+    width: 60,
+    height: 60,
+    padding: 0
+  },
+  button: {
+    width: 45,
+    height: 45,
+    backgroundColor: "white",
+    borderRadius: 5,
+    padding: 0,
+    zIndex: 1,
+    margin: 5,
+    paddingTop: 3,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 2.84,
+
+    elevation: 5
   }
 });
 

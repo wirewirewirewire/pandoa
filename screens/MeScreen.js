@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import Animated from "react-native-reanimated";
 import MapHistory from "../components/MapHistory";
 import BottomSheetDetails from "../components/BottomSheetWarnings";
-import BottomSheetSingle from "../components/BottomSheetSingle";
+import BottomSheetMe from "../components/BottomSheetMe";
 import PaddedMapView from "../components/PaddedMapView";
 import TrackHistory from "../components/TrackHistory";
 import { getDetail } from "../selectors";
@@ -88,7 +88,7 @@ class MapScreen extends Component {
           detail={detail}
           navigation={this.props.navigation}
         />
-        <BottomSheetSingle detail={detail} navigation={this.props.navigation} />
+        <BottomSheetMe detail={detail} navigation={this.props.navigation} />
         <PaddedMapView
           style={{ height: Dimensions.get("window").height - 85 }}
           showsMyLocationButton={false}

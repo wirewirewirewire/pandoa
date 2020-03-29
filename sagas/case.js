@@ -15,8 +15,6 @@ function* watcherSaga() {
 function fetchSaga(data) {
   const url = `${apiUrl}case`;
 
-  console.log("url", data);
-
   return axios({
     method: "GET",
     url: url,
