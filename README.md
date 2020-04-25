@@ -1,3 +1,8 @@
+# Safe Paths
+Please have a look at [Safe Paths](https://covidsafepaths.org/) for further development of GPS and Bluetooth contact tracing.
+
+### Currently not maintained
+
 # Pandoa WirVsVirus
 
 [WirVsVirus ID: 0348 0008](thttps://airtable.com/shrs71ccUVKyvLlUA/tbl6Br4W3IyPGk1jt/viw7AlEju6qFtXJqL?blocks=hide)
