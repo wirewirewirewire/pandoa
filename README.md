@@ -1,5 +1,7 @@
-# Safe Paths
+# Covid Safe Paths
 Please have a look at [Safe Paths](https://covidsafepaths.org/) for further development of GPS and Bluetooth contact tracing.
+
+Safe Paths develops free, open-source, privacy-by-design tools for residents, public health officials, and larger communities to flatten the curve of COVID-19, reduce fear, and prevent a surveillance-state response to the pandemic.
 
 # Currently not maintained
 
